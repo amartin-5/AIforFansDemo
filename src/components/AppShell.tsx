@@ -1,13 +1,13 @@
 import { useState } from 'react';
 import styled from 'styled-components';
+import { MyTeamPage } from '../pages/MyTeamPage';
 import { AppBackground } from './AppBackground';
 import { BottomNav, type NavTabId } from './BottomNav';
 import { PhoneFrame } from './PhoneFrame';
 import { TopBar } from './TopBar';
 
-/** Blank template shell: background + top/bottom chrome; content left empty. */
 export function AppShell() {
-  const [activeTab, setActiveTab] = useState<NavTabId>('ai-chat');
+  const [activeTab, setActiveTab] = useState<NavTabId>('my-team');
 
   return (
     <PhoneFrame>
@@ -15,7 +15,11 @@ export function AppShell() {
         <AppBackground />
         <AppContent>
           <TopBar />
-          <Main aria-label="Content" />
+          {activeTab === 'my-team' ? (
+            <MyTeamPage />
+          ) : (
+            <EmptyMain aria-label="Content" />
+          )}
           <BottomNav active={activeTab} onChange={setActiveTab} />
         </AppContent>
       </Shell>
@@ -44,7 +48,7 @@ const AppContent = styled.div`
   -webkit-backdrop-filter: blur(2px);
 `;
 
-const Main = styled.main`
+const EmptyMain = styled.main`
   flex: 1 1 auto;
   min-height: 0;
   width: 100%;

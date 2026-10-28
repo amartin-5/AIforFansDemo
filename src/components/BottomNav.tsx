@@ -100,7 +100,7 @@ const Label = styled.span<{ $active: boolean }>`
   letter-spacing: 0.2px;
   text-align: center;
   white-space: nowrap;
-  color: var(--color-text-icon-inverse);
+  color: var(--color-text-icon-primary);
   opacity: ${(p) => (p.$active ? 1 : 0.85)};
 `;
 
