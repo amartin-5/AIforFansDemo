@@ -1,5 +1,5 @@
 import { useMemo } from 'react';
-import { Avatar, Badge, Card } from '@cake-admin/cakeand';
+import { Avatar, Badge, Card, nativeScrollbarStyles } from '@cake-admin/cakeand';
 import styled from 'styled-components';
 import { CakeChart } from '../charts/CakeChart';
 import {
@@ -257,6 +257,7 @@ const Page = styled.main`
   gap: var(--space-300);
   box-sizing: border-box;
   -webkit-overflow-scrolling: touch;
+  ${nativeScrollbarStyles}
 
   /* Cake& Card is overflow:hidden + flex-shrink:1 — prevent collapse in a
      fixed-height column by locking section height to content. */
