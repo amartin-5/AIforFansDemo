@@ -1,6 +1,7 @@
 import { Badge } from '@cake-admin/cakeand';
 import type { ReactNode } from 'react';
 import styled from 'styled-components';
+import { glassSurface } from '../../styles/surfaces';
 
 type ChartCardProps = {
   title: string;
@@ -39,13 +40,11 @@ export function ChartCard({
 const Card = styled.section`
   display: flex;
   flex-direction: column;
-  gap: var(--space-200);
-  padding: var(--space-300);
-  border-radius: var(--radius-300);
-  border: 1px solid var(--color-stroke-border);
-  background: var(--color-surfaces-container-blur);
+  gap: var(--space-250);
+  padding: var(--space-350);
   width: 100%;
   min-width: 0;
+  ${glassSurface}
 `;
 
 const Head = styled.div`

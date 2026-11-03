@@ -31,8 +31,8 @@ const Page = styled.main<{ $compact: boolean }>`
   display: flex;
   flex-direction: column;
   align-items: stretch;
-  gap: ${(p) => (p.$compact ? 'var(--space-300)' : 'var(--space-400)')};
-  padding: var(--space-300);
+  gap: ${(p) => (p.$compact ? 'var(--space-350)' : 'var(--space-500)')};
+  padding: var(--space-350) var(--space-300);
   padding-bottom: calc(var(--space-500) + env(safe-area-inset-bottom, 0px));
   box-sizing: border-box;
   ${nativeScrollbarStyles}

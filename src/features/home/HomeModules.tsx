@@ -2,7 +2,6 @@ import {
   Badge,
   Button,
   Card,
-  HeroCard,
   IconButton,
   TextInput,
 } from '@cake-admin/cakeand';
@@ -27,6 +26,13 @@ import { heroBg } from '../../assets/home';
 import lenovoLogo from '../../assets/brand/lenovo-logo.png';
 import { ContentSection } from '../../components/layout/ContentSection';
 import { DEMO_MATCH_ID } from '../../data/fixtures/demoSpine';
+import {
+  fadeRiseIn,
+  glassAccent,
+  glassSurface,
+  glassTile,
+  interactiveLift,
+} from '../../styles/surfaces';
 import {
   AI_INSIGHTS,
   CHAT_PROMPTS,
@@ -92,24 +98,22 @@ export function HomeIntro() {
         </IntroMedia>
         <IntroBody>
           <AiMark aria-hidden>
-            <Sparkles size={40} strokeWidth={1.75} />
+            <Sparkles size={28} strokeWidth={1.75} />
           </AiMark>
-          <Card>
-            <HeroCard
-              title={
-                <>
-                  AI powered football intelligence{' '}
-                  <Accent>beyond the pitch.</Accent>
-                </>
-              }
-              body="Your sidekick for Spain’s path — upcoming fixtures, live matchday, AI chat, past replays, and My Team intel."
-              actions={
-                <Button size="md" onClick={() => navigate('/chat')}>
-                  Ask the AI
-                </Button>
-              }
-            />
-          </Card>
+          <HeroCopy>
+            <HeroEyebrow>AI for Fans</HeroEyebrow>
+            <HeroTitle>
+              Football intelligence{' '}
+              <Accent>beyond the pitch.</Accent>
+            </HeroTitle>
+            <HeroBody>
+              Your sidekick for Spain’s path — upcoming fixtures, live matchday,
+              AI chat, past replays, and My Team intel.
+            </HeroBody>
+            <Button size="md" onClick={() => navigate('/chat')}>
+              Ask the AI
+            </Button>
+          </HeroCopy>
           <PoweredBy>
             <PoweredLabel>Powered by</PoweredLabel>
             <LenovoMark src={lenovoLogo} alt="Lenovo" />
@@ -351,15 +355,15 @@ function InsightsModule() {
               type="button"
               onClick={() => navigate(insight.href)}
             >
-              <Card>
+              <InsightSurface>
                 <TermPad>
-                  <Badge color="secondary" tone="subtle" dot={false}>
+                  <Badge color="primary" tone="subtle" dot={false}>
                     {insight.badge}
                   </Badge>
                   <TermTitle>{insight.title}</TermTitle>
                   <TermBody>{insight.body}</TermBody>
                 </TermPad>
-              </Card>
+              </InsightSurface>
             </InsightButton>
           ))}
         </TermStack>
@@ -457,10 +461,9 @@ const Accent = styled.span`
 const IntroHero = styled.section`
   position: relative;
   width: 100%;
-  border-radius: var(--radius-400);
   overflow: hidden;
-  border: 1px solid var(--color-stroke-border);
-  background: var(--color-surfaces-container-blur);
+  ${glassSurface}
+  ${fadeRiseIn}
 `;
 
 const IntroMedia = styled.div`
@@ -474,19 +477,21 @@ const IntroBg = styled.img`
   height: 100%;
   object-fit: cover;
   display: block;
+  transform: scale(1.04);
 `;
 
 const IntroWash = styled.div`
   position: absolute;
   inset: 0;
-  /* dark.a: inverse-container is light — use canvas + overlay-scrim for dark media washes */
+  /* Solid black fades stay readable in dark.a (inverse-container flips light). */
   background:
+    linear-gradient(to top, rgb(0 0 0 / 0.88) 6%, transparent 68%),
     linear-gradient(
-      to top,
-      var(--color-surfaces-canvas) 8%,
-      transparent 72%
+      135deg,
+      var(--color-primary-primary-overlay) 0%,
+      transparent 48%
     ),
-    var(--color-overlay-scrim);
+    rgb(0 0 0 / 0.28);
 `;
 
 const IntroBody = styled.div`
@@ -494,20 +499,60 @@ const IntroBody = styled.div`
   z-index: 1;
   display: flex;
   flex-direction: column;
-  gap: var(--space-250);
-  padding: var(--space-400) var(--space-300) var(--space-300);
+  gap: var(--space-300);
+  padding: var(--space-500) var(--space-350) var(--space-350);
+  min-height: 300px;
+  justify-content: flex-end;
 `;
 
 const AiMark = styled.div`
   display: inline-flex;
   align-items: center;
   justify-content: center;
-  width: 56px;
-  height: 56px;
-  border-radius: var(--radius-200);
-  background: var(--color-surfaces-on-container);
-  border: 1px solid var(--color-stroke-border);
+  width: 48px;
+  height: 48px;
+  border-radius: var(--radius-1000);
+  background: var(--color-primary-primary-overlay);
+  border: 1px solid var(--color-stroke-border-container-os);
+  color: var(--color-primary-primary);
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
+`;
+
+const HeroCopy = styled.div`
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: var(--space-200);
+  max-width: 34ch;
+`;
+
+const HeroEyebrow = styled.p`
+  margin: 0;
+  font-family: var(--font-family);
+  font-size: var(--type-size-caption);
+  font-weight: var(--font-weight-bold);
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  color: var(--color-primary-primary);
+`;
+
+const HeroTitle = styled.h1`
+  margin: 0;
+  font-family: var(--font-family);
+  font-size: var(--type-size-page);
+  font-weight: var(--font-weight-bold);
+  line-height: 1.12;
+  letter-spacing: -0.02em;
   color: var(--color-text-icon-primary);
+`;
+
+const HeroBody = styled.p`
+  margin: 0;
+  font-family: var(--font-family);
+  font-size: var(--type-size-body);
+  line-height: 1.45;
+  color: var(--color-text-icon-secondary);
 `;
 
 const PoweredBy = styled.div`
@@ -533,6 +578,8 @@ const QuickGrid = styled.div`
   grid-template-columns: repeat(4, minmax(0, 1fr));
   gap: var(--space-150);
   width: 100%;
+  ${fadeRiseIn}
+  animation-delay: 80ms;
 `;
 
 const QuickCard = styled.button`
@@ -541,18 +588,23 @@ const QuickCard = styled.button`
   align-items: center;
   justify-content: center;
   gap: var(--space-100);
-  min-height: 78px;
-  padding: var(--space-150);
-  border-radius: var(--radius-300);
-  border: 1px solid var(--color-stroke-border);
-  background: var(--color-surfaces-container-blur);
+  min-height: 88px;
+  padding: var(--space-200) var(--space-100);
   color: var(--color-text-icon-primary);
   cursor: pointer;
   font: inherit;
+  ${glassTile}
+  ${interactiveLift}
 `;
 
 const QuickIconWrap = styled.span`
   display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 36px;
+  height: 36px;
+  border-radius: var(--radius-1000);
+  background: var(--color-primary-primary-overlay);
   color: var(--color-primary-primary);
 `;
 
@@ -567,19 +619,18 @@ const QuickLabel = styled.span`
 const Module = styled.section`
   display: flex;
   flex-direction: column;
-  gap: var(--space-250);
+  gap: var(--space-300);
   width: 100%;
   min-width: 0;
+  ${fadeRiseIn}
 `;
 
 const FeatureHero = styled.article`
   position: relative;
   width: 100%;
-  min-height: 280px;
-  border-radius: var(--radius-400);
+  min-height: 288px;
   overflow: hidden;
-  border: 1px solid var(--color-stroke-border);
-  background: var(--color-surfaces-canvas);
+  ${glassSurface}
 `;
 
 const FeatureMedia = styled.div`
@@ -598,12 +649,8 @@ const FeatureWash = styled.div`
   position: absolute;
   inset: 0;
   background:
-    linear-gradient(
-      to top,
-      var(--color-surfaces-canvas) 14%,
-      transparent 70%
-    ),
-    var(--color-overlay-scrim);
+    linear-gradient(to top, rgb(0 0 0 / 0.82) 10%, transparent 72%),
+    rgb(0 0 0 / 0.22);
 `;
 
 const FeatureContent = styled.div`
@@ -613,8 +660,8 @@ const FeatureContent = styled.div`
   flex-direction: column;
   align-items: flex-start;
   gap: var(--space-200);
-  padding: var(--space-400) var(--space-300) var(--space-300);
-  min-height: 280px;
+  padding: var(--space-500) var(--space-350) var(--space-350);
+  min-height: 288px;
   justify-content: flex-end;
 `;
 
@@ -623,10 +670,9 @@ const FeatureTitle = styled.h2`
   font-family: var(--font-family);
   font-size: var(--type-size-page);
   font-weight: var(--font-weight-bold);
-  line-height: 1.1;
+  line-height: 1.12;
   color: var(--color-text-icon-primary);
   white-space: pre-line;
-  text-transform: uppercase;
   letter-spacing: -0.02em;
 `;
 
@@ -634,7 +680,7 @@ const FeatureBody = styled.p`
   margin: 0;
   font-family: var(--font-family);
   font-size: var(--type-size-body);
-  line-height: 1.4;
+  line-height: 1.45;
   color: var(--color-text-icon-secondary);
   max-width: 36ch;
 `;
@@ -660,29 +706,28 @@ const HScroll = styled.div`
 `;
 
 const TileCard = styled.button`
-  width: 168px;
-  min-height: 120px;
+  width: 176px;
+  min-height: 132px;
   display: flex;
   flex-direction: column;
   align-items: flex-start;
   gap: var(--space-150);
-  padding: var(--space-250);
-  border-radius: var(--radius-300);
-  border: 1px solid var(--color-stroke-border);
-  background: var(--color-surfaces-container-blur);
+  padding: var(--space-300);
   color: inherit;
   cursor: pointer;
   text-align: left;
   font: inherit;
+  ${glassTile}
+  ${interactiveLift}
 `;
 
 const TileIcon = styled.span`
   display: inline-flex;
   align-items: center;
   justify-content: center;
-  width: 32px;
-  height: 32px;
-  border-radius: var(--radius-200);
+  width: 36px;
+  height: 36px;
+  border-radius: var(--radius-1000);
   background: var(--color-primary-primary-overlay);
   color: var(--color-primary-primary);
 `;
@@ -701,7 +746,7 @@ const TileBody = styled.p`
   font-family: var(--font-family);
   font-size: var(--type-size-caption);
   color: var(--color-text-icon-secondary);
-  line-height: 1.35;
+  line-height: 1.4;
 `;
 
 const ViewLink = styled.button`
@@ -713,10 +758,7 @@ const ViewLink = styled.button`
   font-family: var(--font-family);
   font-size: var(--type-size-caption);
   font-weight: var(--font-weight-bold);
-  letter-spacing: 0.04em;
-  text-transform: uppercase;
   color: var(--color-primary-primary);
-  text-decoration: underline;
 `;
 
 const Eyebrow = styled.p`
@@ -724,7 +766,7 @@ const Eyebrow = styled.p`
   font-family: var(--font-family);
   font-size: var(--type-size-caption);
   font-weight: var(--font-weight-bold);
-  letter-spacing: 0.04em;
+  letter-spacing: 0.06em;
   text-transform: uppercase;
   color: var(--color-primary-primary);
 `;
@@ -732,14 +774,16 @@ const Eyebrow = styled.p`
 const ReplayCardButton = styled.button`
   position: relative;
   width: 272px;
-  height: 158px;
-  border: none;
+  height: 164px;
+  border: 1px solid var(--color-stroke-border-container-os);
   padding: 0;
-  border-radius: var(--radius-300);
+  border-radius: var(--radius-400);
   overflow: hidden;
   cursor: pointer;
   text-align: left;
   background: var(--color-surfaces-canvas);
+  box-shadow: var(--elevation-3);
+  ${interactiveLift}
 `;
 
 const ReplayImg = styled.img`
@@ -754,12 +798,8 @@ const ReplayWash = styled.div`
   position: absolute;
   inset: 0;
   background:
-    linear-gradient(
-      to top,
-      var(--color-surfaces-canvas) 0%,
-      transparent 58%
-    ),
-    var(--color-overlay-scrim);
+    linear-gradient(to top, rgb(0 0 0 / 0.86) 0%, transparent 58%),
+    rgb(0 0 0 / 0.2);
 `;
 
 const ReplayTop = styled.div`
@@ -779,9 +819,11 @@ const Duration = styled.span`
   font-size: var(--type-size-caption);
   font-weight: var(--font-weight-medium);
   color: var(--color-text-icon-primary);
-  background: var(--color-surfaces-container-blur);
-  backdrop-filter: blur(8px);
-  border-radius: var(--radius-100);
+  background: var(--color-surfaces-container-blur-high);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  border: 1px solid var(--color-stroke-border-container-os);
+  border-radius: var(--radius-1000);
   padding: var(--space-050) var(--space-150);
 `;
 
@@ -794,7 +836,7 @@ const ReplayBottom = styled.div`
   display: flex;
   flex-direction: column;
   gap: var(--space-050);
-  padding: var(--space-200);
+  padding: var(--space-250);
 `;
 
 const ReplayTitle = styled.span`
@@ -817,7 +859,7 @@ const ContinuePad = styled.div`
   display: flex;
   flex-direction: column;
   gap: var(--space-300);
-  padding: var(--space-350);
+  padding: var(--space-400);
 `;
 
 const ContinueHead = styled.div`
@@ -832,6 +874,7 @@ const ContinueTitle = styled.h3`
   font-family: var(--font-family);
   font-size: var(--type-size-subject);
   font-weight: var(--font-weight-bold);
+  letter-spacing: -0.01em;
   color: var(--color-text-icon-primary);
 `;
 
@@ -840,6 +883,7 @@ const Journey = styled.div`
   justify-content: space-between;
   gap: var(--space-100);
   width: 100%;
+  padding: var(--space-150) 0;
 `;
 
 const JourneyStep = styled.button<{ $active: boolean }>`
@@ -855,6 +899,8 @@ const JourneyStep = styled.button<{ $active: boolean }>`
   padding: 0;
   font-family: var(--font-family);
   font-size: var(--type-size-caption);
+  font-weight: ${(p) =>
+    p.$active ? 'var(--font-weight-bold)' : 'var(--font-weight-regular)'};
   color: ${(p) =>
     p.$active
       ? 'var(--color-text-icon-primary)'
@@ -863,13 +909,15 @@ const JourneyStep = styled.button<{ $active: boolean }>`
 `;
 
 const JourneyDot = styled.span<{ $active: boolean }>`
-  width: 10px;
-  height: 10px;
+  width: 12px;
+  height: 12px;
   border-radius: var(--radius-1000);
   background: ${(p) =>
     p.$active
       ? 'var(--color-primary-primary)'
       : 'var(--color-surfaces-on-container)'};
+  box-shadow: ${(p) =>
+    p.$active ? '0 0 0 4px var(--color-primary-primary-overlay)' : 'none'};
 `;
 
 const JourneyCopy = styled.p`
@@ -896,6 +944,12 @@ const InsightButton = styled.button`
   text-align: left;
   font: inherit;
   color: inherit;
+  border-radius: var(--radius-400);
+  ${interactiveLift}
+`;
+
+const InsightSurface = styled.div`
+  ${glassAccent}
 `;
 
 const TermPad = styled.div`
@@ -903,7 +957,7 @@ const TermPad = styled.div`
   flex-direction: column;
   align-items: flex-start;
   gap: var(--space-150);
-  padding: var(--space-300);
+  padding: var(--space-350);
 `;
 
 const TermTitle = styled.h3`
@@ -911,6 +965,7 @@ const TermTitle = styled.h3`
   font-family: var(--font-family);
   font-size: var(--type-size-subject);
   font-weight: var(--font-weight-bold);
+  letter-spacing: -0.01em;
   color: var(--color-text-icon-primary);
 `;
 
@@ -928,7 +983,7 @@ const KickoffHead = styled.div`
   align-items: center;
   gap: var(--space-100);
   text-align: center;
-  padding-top: var(--space-300);
+  padding-top: var(--space-200);
 `;
 
 const KickoffTitle = styled.h2`
@@ -936,6 +991,7 @@ const KickoffTitle = styled.h2`
   font-family: var(--font-family);
   font-size: var(--type-size-title);
   font-weight: var(--font-weight-bold);
+  letter-spacing: -0.01em;
   color: var(--color-text-icon-primary);
 `;
 
@@ -944,6 +1000,7 @@ const KickoffSub = styled.p`
   font-family: var(--font-family);
   font-size: var(--type-size-body);
   color: var(--color-text-icon-secondary);
+  max-width: 32ch;
 `;
 
 const Composer = styled.div`
@@ -955,18 +1012,17 @@ const Composer = styled.div`
 `;
 
 const PromptCardButton = styled.button`
-  width: 168px;
+  width: 176px;
   min-height: 154px;
   display: flex;
   flex-direction: column;
   align-items: flex-start;
   gap: var(--space-150);
-  padding: var(--space-250);
-  border-radius: var(--radius-300);
-  border: 1px solid var(--color-stroke-border);
-  background: var(--color-surfaces-container-blur);
+  padding: var(--space-300);
   color: inherit;
   cursor: pointer;
   text-align: left;
   font: inherit;
+  ${glassTile}
+  ${interactiveLift}
 `;

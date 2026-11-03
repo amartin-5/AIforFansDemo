@@ -295,6 +295,4 @@ const AppContent = styled.div`
   max-height: 100%;
   width: 100%;
   overflow: hidden;
-  backdrop-filter: blur(2px);
-  -webkit-backdrop-filter: blur(2px);
 `;

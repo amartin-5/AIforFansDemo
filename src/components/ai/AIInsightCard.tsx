@@ -1,5 +1,6 @@
-import { Button, Card } from '@cake-admin/cakeand';
+import { Button } from '@cake-admin/cakeand';
 import styled from 'styled-components';
+import { glassAccent } from '../../styles/surfaces';
 import type { AIInsight } from '../../types/domain';
 import { InterpretationLabel } from './InterpretationLabel';
 
@@ -10,7 +11,7 @@ type AIInsightCardProps = {
 
 export function AIInsightCard({ insight, onOpen }: AIInsightCardProps) {
   return (
-    <Card>
+    <Surface>
       <Pad>
         <InterpretationLabel kind="interpretation" />
         <Title>{insight.title}</Title>
@@ -22,16 +23,20 @@ export function AIInsightCard({ insight, onOpen }: AIInsightCardProps) {
           </Button>
         ) : null}
       </Pad>
-    </Card>
+    </Surface>
   );
 }
+
+const Surface = styled.div`
+  ${glassAccent}
+`;
 
 const Pad = styled.div`
   display: flex;
   flex-direction: column;
   align-items: flex-start;
   gap: var(--space-200);
-  padding: var(--space-300);
+  padding: var(--space-350);
 `;
 
 const Title = styled.h3`

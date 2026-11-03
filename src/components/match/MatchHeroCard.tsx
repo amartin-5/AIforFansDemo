@@ -1,6 +1,7 @@
 import { Button } from '@cake-admin/cakeand';
 import styled from 'styled-components';
 import { backgroundImage } from '../../assets/template';
+import { glassSurface } from '../../styles/surfaces';
 import type { Competition, Match, Team } from '../../types/domain';
 import { MatchStatusBadge } from './MatchStatusBadge';
 import { ScoreDisplay } from './ScoreDisplay';
@@ -101,20 +102,16 @@ export function MatchHeroCard({
 
 const PlainCard = styled.div`
   width: 100%;
-  border-radius: var(--radius-300);
-  border: 1px solid var(--color-stroke-border);
-  background: var(--color-surfaces-container-blur);
   overflow: hidden;
+  ${glassSurface}
 `;
 
 const Editorial = styled.article`
   width: 100%;
   display: flex;
   flex-direction: column;
-  border-radius: var(--radius-300);
-  border: 1px solid var(--color-stroke-border);
   overflow: hidden;
-  background: var(--color-surfaces-container-blur);
+  ${glassSurface}
 `;
 
 const HeroMedia = styled.div`

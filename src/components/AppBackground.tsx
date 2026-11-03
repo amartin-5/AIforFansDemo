@@ -37,6 +37,6 @@ const Img = styled.img`
 const Overlay = styled.div`
   position: absolute;
   inset: 0;
-  /* Figma template: 50% black wash over blurred art — no Cake token for this overlay. */
-  background: rgb(0 0 0 / 0.5);
+  /* HelloPC ICC wash — slightly open so frosted cards read over atmosphere. */
+  background: rgb(0 0 0 / 0.4);
 `;

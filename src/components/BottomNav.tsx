@@ -1,6 +1,7 @@
 import { CalendarDays, History, Radio, Shirt } from 'lucide-react';
 import type { ReactNode } from 'react';
 import styled from 'styled-components';
+import { glassChrome } from '../styles/surfaces';
 import { AppIcon } from './AppIcon';
 
 export type NavTabId = 'upcoming' | 'matchday' | 'ai-chat' | 'past' | 'my-team';
@@ -63,11 +64,9 @@ const Bar = styled.nav`
   display: flex;
   flex-direction: column;
   align-items: center;
-  border-top: 1px solid var(--color-stroke-border);
-  background: var(--color-surfaces-container-blur);
-  backdrop-filter: blur(30px);
-  -webkit-backdrop-filter: blur(30px);
+  border-top: 1px solid transparent;
   padding-bottom: env(safe-area-inset-bottom, 0px);
+  ${glassChrome}
 `;
 
 const Wrap = styled.div`
@@ -75,7 +74,7 @@ const Wrap = styled.div`
   align-items: center;
   justify-content: space-between;
   width: 100%;
-  padding: 11px var(--space-100);
+  padding: var(--space-150) var(--space-100) var(--space-100);
 `;
 
 const NavItem = styled.button`
@@ -86,34 +85,57 @@ const NavItem = styled.button`
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  gap: var(--space-025);
+  gap: var(--space-050);
   border: none;
   background: transparent;
   padding: 0;
   cursor: pointer;
   color: inherit;
   font: inherit;
+  border-radius: var(--radius-200);
+  transition: background 160ms ease;
+
+  &[aria-current='page'] {
+    background: var(--color-primary-primary-overlay);
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    transition: none;
+  }
 `;
 
 const IconSlot = styled.span<{ $active: boolean }>`
   display: flex;
   align-items: center;
   justify-content: center;
-  color: var(--color-text-icon-primary);
-  opacity: ${(p) => (p.$active ? 1 : 0.75)};
+  width: 36px;
+  height: 28px;
+  border-radius: var(--radius-1000);
+  color: ${(p) =>
+    p.$active
+      ? 'var(--color-primary-primary)'
+      : 'var(--color-text-icon-secondary)'};
+  transition: color 160ms ease;
+
+  @media (prefers-reduced-motion: reduce) {
+    transition: none;
+  }
 `;
 
 /* Figma medium.10 — no cake& type token at 10px; closest caption is 12px. */
 const Label = styled.span<{ $active: boolean }>`
   font-family: var(--font-family);
-  font-weight: var(--font-weight-medium);
+  font-weight: ${(p) =>
+    p.$active ? 'var(--font-weight-bold)' : 'var(--font-weight-medium)'};
   font-size: 10px;
   line-height: 1.35;
   letter-spacing: 0.2px;
   text-align: center;
   white-space: nowrap;
-  color: var(--color-text-icon-primary);
-  opacity: ${(p) => (p.$active ? 1 : 0.85)};
+  color: ${(p) =>
+    p.$active
+      ? 'var(--color-text-icon-primary)'
+      : 'var(--color-text-icon-secondary)'};
 `;
 
 const HomeIndicatorArea = styled.div`
@@ -131,5 +153,5 @@ const HomeIndicator = styled.div`
   width: 100px;
   height: 4px;
   border-radius: var(--radius-1000);
-  background: var(--color-stroke-border);
+  background: var(--color-stroke-border-container-os);
 `;

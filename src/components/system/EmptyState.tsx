@@ -1,5 +1,6 @@
 import { Button } from '@cake-admin/cakeand';
 import styled from 'styled-components';
+import { glassSurface } from '../../styles/surfaces';
 
 type EmptyStateProps = {
   title: string;
@@ -28,9 +29,7 @@ const Wrap = styled.div`
   align-items: flex-start;
   gap: var(--space-200);
   padding: var(--space-400);
-  border-radius: var(--radius-300);
-  background: var(--color-surfaces-container-blur);
-  border: 1px solid var(--color-stroke-border);
+  ${glassSurface}
 `;
 
 const Title = styled.h2`

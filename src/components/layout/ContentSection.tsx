@@ -22,7 +22,7 @@ export function ContentSection({ title, action, children }: ContentSectionProps)
 const Section = styled.section`
   display: flex;
   flex-direction: column;
-  gap: var(--space-200);
+  gap: var(--space-250);
   width: 100%;
   min-width: 0;
 `;
@@ -38,6 +38,7 @@ const Title = styled.h2`
   margin: 0;
   font-family: var(--font-family);
   font-size: var(--type-size-subject);
-  font-weight: var(--font-weight-medium);
+  font-weight: var(--font-weight-bold);
+  letter-spacing: -0.01em;
   color: var(--color-text-icon-primary);
 `;

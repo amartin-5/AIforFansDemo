@@ -1,4 +1,5 @@
 import styled from 'styled-components';
+import { glassChrome } from '../../styles/surfaces';
 import type { Match, Team } from '../../types/domain';
 import { MatchStatusBadge } from './MatchStatusBadge';
 import { ScoreDisplay } from './ScoreDisplay';
@@ -39,10 +40,8 @@ const Bar = styled.div`
   align-items: center;
   gap: var(--space-100);
   padding: var(--space-200) var(--space-300);
-  background: var(--color-surfaces-container-blur);
-  backdrop-filter: blur(20px);
-  -webkit-backdrop-filter: blur(20px);
-  border-bottom: 1px solid var(--color-stroke-border);
+  border-bottom: 1px solid transparent;
+  ${glassChrome}
 `;
 
 const Row = styled.div`

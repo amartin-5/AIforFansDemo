@@ -1,4 +1,5 @@
 import styled from 'styled-components';
+import { glassTile } from '../../styles/surfaces';
 
 type MetricTileProps = {
   label: string;
@@ -20,11 +21,9 @@ const Tile = styled.div`
   display: flex;
   flex-direction: column;
   gap: var(--space-050);
-  padding: var(--space-250);
-  border-radius: var(--radius-200);
-  border: 1px solid var(--color-stroke-border);
-  background: var(--color-surfaces-container-blur);
+  padding: var(--space-300);
   min-width: 0;
+  ${glassTile}
 `;
 
 const Value = styled.p`

@@ -1,5 +1,6 @@
 import { ChevronRight } from 'lucide-react';
 import styled from 'styled-components';
+import { glassTile, interactiveLift } from '../../styles/surfaces';
 import type { Competition, Match, Team } from '../../types/domain';
 import { TeamIdentity } from './TeamIdentity';
 
@@ -48,17 +49,11 @@ const Row = styled.button`
   min-height: 44px;
   margin: 0;
   padding: var(--space-300);
-  border: 1px solid var(--color-stroke-border);
-  border-radius: var(--radius-300);
-  background: var(--color-surfaces-container-blur);
   cursor: pointer;
   text-align: left;
   color: inherit;
-
-  &:focus-visible {
-    outline: 2px solid var(--color-primary-primary);
-    outline-offset: 2px;
-  }
+  ${glassTile}
+  ${interactiveLift}
 `;
 
 const Meta = styled.div`
