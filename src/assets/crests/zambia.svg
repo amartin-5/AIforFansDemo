@@ -1,0 +1,7 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 120 140" role="img" aria-label="Zambia">
+  <path fill="#198A00" d="M60 4c22 0 44 6 52 14v72c0 28-28 46-52 50C36 136 8 118 8 90V18C16 10 38 4 60 4z"/>
+  <rect x="78" y="18" width="10" height="36" fill="#EF7D00"/>
+  <rect x="88" y="18" width="10" height="36" fill="#000"/>
+  <rect x="98" y="18" width="10" height="36" fill="#DE2010"/>
+  <path fill="#EF7D00" d="M60 48c-10 0-18 7-18 16 0 14 18 28 18 28s18-14 18-28c0-9-8-16-18-16zm0 22a6 6 0 1 1 0-12 6 6 0 0 1 0 12z"/>
+</svg>

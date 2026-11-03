@@ -1,7 +1,7 @@
 import styled from 'styled-components';
 import { backgroundImage } from '../assets/template';
 
-/** Full-bleed abstract blue background from Figma (blurred + 50% black overlay). */
+/** Full-bleed abstract background from Cake template (blurred + overlay). */
 export function AppBackground() {
   return (
     <Root aria-hidden>
@@ -21,20 +21,13 @@ const Root = styled.div`
   z-index: 0;
 `;
 
-/* Figma: oversized blurred image centered with horizontal offset */
 const BlurredLayer = styled.div`
   position: absolute;
-  left: calc(50% + 96.5px);
-  top: 50%;
-  width: 2906px;
-  height: 1538px;
-  transform: translate(-50%, -50%);
+  inset: -20%;
   filter: blur(35px);
 `;
 
 const Img = styled.img`
-  position: absolute;
-  inset: 0;
   width: 100%;
   height: 100%;
   object-fit: cover;
@@ -44,5 +37,6 @@ const Img = styled.img`
 const Overlay = styled.div`
   position: absolute;
   inset: 0;
-  background: rgba(0, 0, 0, 0.5);
+  /* Figma template: 50% black wash over blurred art — no Cake token for this overlay. */
+  background: rgb(0 0 0 / 0.5);
 `;

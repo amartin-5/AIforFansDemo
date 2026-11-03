@@ -1,25 +1,32 @@
+import { CalendarDays, History, Radio, Shirt } from 'lucide-react';
+import type { ReactNode } from 'react';
 import styled from 'styled-components';
-import { accountCircleIcon } from '../assets/template';
 import { AppIcon } from './AppIcon';
 
 export type NavTabId = 'upcoming' | 'matchday' | 'ai-chat' | 'past' | 'my-team';
 
-const TABS: { id: NavTabId; label: string; kind: 'icon' | 'app' }[] = [
-  { id: 'upcoming', label: 'Upcoming', kind: 'icon' },
-  { id: 'matchday', label: 'Matchday', kind: 'icon' },
+const TABS: {
+  id: NavTabId;
+  label: string;
+  kind: 'icon' | 'app';
+  icon?: ReactNode;
+}[] = [
+  { id: 'upcoming', label: 'Upcoming', kind: 'icon', icon: <CalendarDays size={20} aria-hidden /> },
+  { id: 'matchday', label: 'Matchday', kind: 'icon', icon: <Radio size={20} aria-hidden /> },
   { id: 'ai-chat', label: 'AI Chat', kind: 'app' },
-  { id: 'past', label: 'Past', kind: 'icon' },
-  { id: 'my-team', label: 'My Team', kind: 'icon' },
+  { id: 'past', label: 'Past', kind: 'icon', icon: <History size={20} aria-hidden /> },
+  { id: 'my-team', label: 'My Team', kind: 'icon', icon: <Shirt size={20} aria-hidden /> },
 ];
 
 type BottomNavProps = {
-  active: NavTabId;
+  /** Null when no primary tab is selected (e.g. Home overview). */
+  active: NavTabId | null;
   onChange: (id: NavTabId) => void;
 };
 
 export function BottomNav({ active, onChange }: BottomNavProps) {
   return (
-    <Bar>
+    <Bar aria-label="Primary">
       <Wrap>
         {TABS.map((tab) => {
           const isActive = tab.id === active;
@@ -28,13 +35,13 @@ export function BottomNav({ active, onChange }: BottomNavProps) {
               key={tab.id}
               type="button"
               aria-current={isActive ? 'page' : undefined}
+              aria-label={tab.label}
               onClick={() => onChange(tab.id)}
             >
               {tab.kind === 'app' ? (
                 <AppIcon size={32} />
               ) : (
-                /* Figma placeholder — same account_circle for all side tabs until finals */
-                <IconImg src={accountCircleIcon} alt="" width={20} height={20} />
+                <IconSlot $active={isActive}>{tab.icon}</IconSlot>
               )}
               <Label $active={isActive}>{tab.label}</Label>
             </NavItem>
@@ -50,7 +57,7 @@ export function BottomNav({ active, onChange }: BottomNavProps) {
 
 const Bar = styled.nav`
   position: relative;
-  z-index: 1;
+  z-index: 2;
   flex-shrink: 0;
   width: 100%;
   display: flex;
@@ -60,6 +67,7 @@ const Bar = styled.nav`
   background: var(--color-surfaces-container-blur);
   backdrop-filter: blur(30px);
   -webkit-backdrop-filter: blur(30px);
+  padding-bottom: env(safe-area-inset-bottom, 0px);
 `;
 
 const Wrap = styled.div`
@@ -73,6 +81,7 @@ const Wrap = styled.div`
 const NavItem = styled.button`
   flex: 1 0 0;
   min-width: 0;
+  min-height: 44px;
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -86,9 +95,12 @@ const NavItem = styled.button`
   font: inherit;
 `;
 
-const IconImg = styled.img`
-  display: block;
-  flex-shrink: 0;
+const IconSlot = styled.span<{ $active: boolean }>`
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: var(--color-text-icon-primary);
+  opacity: ${(p) => (p.$active ? 1 : 0.75)};
 `;
 
 /* Figma medium.10 — no cake& type token at 10px; closest caption is 12px. */

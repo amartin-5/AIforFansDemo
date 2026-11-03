@@ -1,0 +1,9 @@
+export { default as heroBg } from './hero-bg.png';
+export { default as askReplayBg } from './ask-replay-bg.png';
+export { default as learnBg } from './learn-bg.png';
+export { default as consultBg } from './consult-bg.png';
+export { default as replay1 } from './replay-1.png';
+export { default as replay2 } from './replay-2.png';
+export { default as replay3 } from './replay-3.png';
+export { default as replay4 } from './replay-4.png';
+export { default as replay5 } from './replay-5.png';

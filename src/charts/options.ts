@@ -204,6 +204,104 @@ export function createLineOption(
   };
 }
 
+/** Grouped horizontal bars for mobile team comparison. */
+export function createHorizontalBarOption(
+  categories: string[],
+  series: { name: string; values: number[] }[],
+): EChartsOption {
+  return {
+    textStyle: { fontFamily: FONT },
+    animation: true,
+    animationDuration: 600,
+    grid: { left: 8, right: 16, top: 8, bottom: 40, containLabel: true },
+    tooltip: {
+      ...TOOLTIP_BASE,
+      show: true,
+      trigger: 'axis',
+      axisPointer: { type: 'shadow' },
+    },
+    legend: {
+      show: true,
+      bottom: 0,
+      left: 'center',
+      icon: 'roundRect',
+      itemWidth: 12,
+      itemHeight: 12,
+      textStyle: { color: '#c6c6cf', fontFamily: FONT, fontSize: 11 },
+    },
+    xAxis: {
+      type: 'value',
+      axisLine: { show: false },
+      axisTick: { show: false },
+      axisLabel: AXIS_LABEL,
+      splitLine: { show: true, lineStyle: { color: '#322f30' } },
+    },
+    yAxis: {
+      type: 'category',
+      data: categories,
+      axisLine: { show: false },
+      axisTick: { show: false },
+      axisLabel: AXIS_LABEL,
+    },
+    series: series.map((s, i) => ({
+      type: 'bar' as const,
+      name: s.name,
+      data: s.values,
+      barMaxWidth: 14,
+      itemStyle: {
+        color: CAKE_CATEGORICAL_COLORS[i % CAKE_CATEGORICAL_COLORS.length],
+        borderRadius: [0, 8, 8, 0],
+      },
+    })),
+  };
+}
+
+/** Compact radar for chat analysis cards. */
+export function createRadarOption(
+  indicators: string[],
+  values: number[],
+  seriesName = 'Profile',
+): EChartsOption {
+  const color = CAKE_CATEGORICAL_COLORS[0];
+  return {
+    textStyle: { fontFamily: FONT },
+    animation: true,
+    animationDuration: 600,
+    radar: {
+      indicator: indicators.map((name) => ({ name, max: 100 })),
+      center: ['50%', '52%'],
+      radius: '62%',
+      axisName: {
+        color: '#c6c6cf',
+        fontFamily: FONT,
+        fontSize: 10,
+      },
+      splitArea: {
+        areaStyle: {
+          color: ['rgba(255,255,255,0.02)', 'rgba(255,255,255,0.04)'],
+        },
+      },
+      axisLine: { lineStyle: { color: '#5e5e5e' } },
+      splitLine: { lineStyle: { color: '#5e5e5e' } },
+    },
+    series: [
+      {
+        type: 'radar',
+        name: seriesName,
+        data: [
+          {
+            value: values,
+            name: seriesName,
+            areaStyle: { color: 'rgba(117, 134, 255, 0.28)' },
+            lineStyle: { width: 2, color },
+            itemStyle: { color },
+          },
+        ],
+      },
+    ],
+  };
+}
+
 /** Semi gauge for a single percentage metric. */
 export function createGaugeOption(name: string, value: number, color: string): EChartsOption {
   return {

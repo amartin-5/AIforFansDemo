@@ -1,43 +1,45 @@
 import type { ReactNode } from 'react';
 import styled from 'styled-components';
 
-/** Fixed 393×916 smartphone frame, centered and scaled to fit the viewport. */
+/**
+ * Fluid mobile shell (Cake Template ~430px).
+ * No transform scaling — short viewports scroll instead of clipping.
+ */
 export function PhoneFrame({ children }: { children: ReactNode }) {
   return (
-    <Page>
-      <ScaleWrap>
-        <Frame>{children}</Frame>
-      </ScaleWrap>
-    </Page>
+    <Viewport>
+      <Column>{children}</Column>
+    </Viewport>
   );
 }
 
-const Page = styled.div`
-  min-height: 100vh;
+const Viewport = styled.div`
+  height: 100dvh;
+  height: 100vh;
+  width: 100%;
   display: flex;
-  align-items: center;
   justify-content: center;
   background: var(--color-surfaces-canvas);
-  padding: var(--space-300);
   box-sizing: border-box;
   overflow: hidden;
 `;
 
-/* Scale so the full 916px phone fits in the viewport height. */
-const ScaleWrap = styled.div`
-  width: 393px;
-  height: 916px;
-  flex-shrink: 0;
-  transform: scale(min(1, (100vh - 24px) / 916));
-  transform-origin: center center;
-`;
-
-const Frame = styled.div`
-  width: 393px;
-  height: 916px;
-  border-radius: var(--radius-400);
-  overflow: hidden;
+const Column = styled.div`
   position: relative;
+  width: 100%;
+  max-width: 430px;
+  height: 100%;
+  max-height: 100%;
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
   background: var(--color-secondary-secondary-press);
   box-shadow: var(--elevation-5);
+
+  @media (min-width: 480px) {
+    height: calc(100% - var(--space-400));
+    max-height: calc(100% - var(--space-400));
+    margin: var(--space-200) 0;
+    border-radius: var(--radius-400);
+  }
 `;

@@ -13,6 +13,7 @@ import { createRoot } from 'react-dom/client';
 // If you ever see the layout collapse with every token resolving to an empty
 // string, this import is the first thing to check.
 import '@cake-admin/cakeand/cakeand.css';
+import './app.css';
 
 import App from './App';
 

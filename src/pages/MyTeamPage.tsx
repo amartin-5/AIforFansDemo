@@ -11,21 +11,22 @@ import {
 import { PitchLineup } from '../components/my-team/PitchLineup';
 import { TeamCrest } from '../components/TeamCrest';
 import {
-  englandPath,
-  finalMatch,
+  featuredMatch,
   finalStats,
   goalsByRound,
   goalsProgress,
   keyPlayers,
   pathRecord,
   spainPath,
+  swedenPath,
   topScorers,
 } from '../data/spainWwc2023';
 
 export function MyTeamPage() {
   const spainRecord = pathRecord(spainPath);
-  const englandRecord = pathRecord(englandPath);
+  const swedenRecord = pathRecord(swedenPath);
   const spainTotal = spainRecord.wins + spainRecord.draws + spainRecord.losses;
+  const finalMatch = featuredMatch;
 
   const barOption = useMemo(
     () =>
@@ -93,11 +94,11 @@ export function MyTeamPage() {
               </Score>
               <Scorer>{finalMatch.scorer}</Scorer>
               <Badge color="green" tone="subtle" dot={false}>
-                Champions
+                Live SF
               </Badge>
             </ScoreBlock>
             <TeamCol>
-              <TeamCrest team="England" size={52} />
+              <TeamCrest team="Sweden" size={52} />
               <TeamName>{finalMatch.away}</TeamName>
             </TeamCol>
           </MatchLockup>
@@ -112,7 +113,7 @@ export function MyTeamPage() {
           <InsightHead>
             <InsightTitle>{finalMatch.insightTitle}</InsightTitle>
             <Badge color="primary" tone="subtle">
-              Final
+              Semi-final
             </Badge>
           </InsightHead>
           <BodyText>{finalMatch.insightBody}</BodyText>
@@ -136,8 +137,8 @@ export function MyTeamPage() {
               Spain {spainRecord.wins}W {spainRecord.draws}D {spainRecord.losses}L
             </span>
             <span>
-              England {englandRecord.wins}W {englandRecord.draws}D{' '}
-              {englandRecord.losses}L
+              Sweden {swedenRecord.wins}W {swedenRecord.draws}D{' '}
+              {swedenRecord.losses}L
             </span>
           </H2HLabels>
           <Segmented
@@ -158,9 +159,9 @@ export function MyTeamPage() {
               </Dots>
             </FormTeam>
             <FormTeam>
-              <FormLabel>England</FormLabel>
+              <FormLabel>Sweden</FormLabel>
               <Dots>
-                {englandPath.map((m) => (
+                {swedenPath.map((m) => (
                   <Dot key={m.opponent} $result={m.result} title={`${m.opponent} ${m.score}`} />
                 ))}
               </Dots>
@@ -224,10 +225,10 @@ export function MyTeamPage() {
       <GaugeGrid>
         <Card>
           <CardPad>
-            <SectionTitle>Final possession</SectionTitle>
+            <SectionTitle>SF possession</SectionTitle>
             <CakeChart option={possessionOption} height={160} />
             <GaugeSub>
-              ESP {finalStats.possessionSpain}% · ENG {finalStats.possessionEngland}%
+              ESP {finalStats.possessionSpain}% · SWE {finalStats.possessionSweden}%
             </GaugeSub>
           </CardPad>
         </Card>
@@ -236,7 +237,7 @@ export function MyTeamPage() {
             <SectionTitle>Pass accuracy</SectionTitle>
             <CakeChart option={passOption} height={160} />
             <GaugeSub>
-              ESP {finalStats.passAccuracySpain}% · ENG {finalStats.passAccuracyEngland}%
+              ESP {finalStats.passAccuracySpain}% · SWE {finalStats.passAccuracySweden}%
             </GaugeSub>
           </CardPad>
         </Card>
@@ -245,7 +246,7 @@ export function MyTeamPage() {
   );
 }
 
-const Page = styled.main`
+const Page = styled.section`
   flex: 1 1 auto;
   min-height: 0;
   width: 100%;

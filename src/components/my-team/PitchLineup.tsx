@@ -1,13 +1,13 @@
 import { useState } from 'react';
 import { Avatar } from '@cake-admin/cakeand';
 import styled from 'styled-components';
-import { englandXi, spainXi, type Player } from '../../data/spainWwc2023';
+import { spainXi, swedenXi, type Player } from '../../data/spainWwc2023';
 
-type Side = 'spain' | 'england';
+type Side = 'spain' | 'sweden';
 
 export function PitchLineup() {
   const [side, setSide] = useState<Side>('spain');
-  const players = side === 'spain' ? spainXi : englandXi;
+  const players = side === 'spain' ? spainXi : swedenXi;
   const accent = side === 'spain' ? 'spain' : 'england';
 
   return (
@@ -25,14 +25,14 @@ export function PitchLineup() {
         <Toggle
           type="button"
           role="tab"
-          aria-selected={side === 'england'}
-          $active={side === 'england'}
-          onClick={() => setSide('england')}
+          aria-selected={side === 'sweden'}
+          $active={side === 'sweden'}
+          onClick={() => setSide('sweden')}
         >
-          England XI
+          Sweden XI
         </Toggle>
       </ToggleRow>
-      <Pitch aria-label={`${side === 'spain' ? 'Spain' : 'England'} starting lineup`}>
+      <Pitch aria-label={`${side === 'spain' ? 'Spain' : 'Sweden'} starting lineup`}>
         <Halfway />
         <CenterCircle />
         <PenaltyTop />

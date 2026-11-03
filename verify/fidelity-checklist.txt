@@ -1,0 +1,46 @@
+Slice 1 fidelity checklist — shell / Upcoming / My Team
+Verified 2026-11-03 against Cake Template composition + demo spine.
+
+Shell
+[x] No transform: scale on PhoneFrame / MobileShell
+[x] Content column max-width 430px; height locked to 100dvh
+[x] Single PageScroll scroller; BottomNav in-flow, not clipped
+[x] No horizontal overflow at 320x568 and 390x844
+[x] Bottom nav + home indicator visible; primary CTAs reachable
+
+Upcoming (refs 823:6144 / 823:8438 composition)
+[x] Editorial hero media plane + match lockup + CTA
+[x] Story / AI interpretation block
+[x] Where-to-watch provider chips (neutral placeholders)
+[x] Fixture list / grid under hero
+[x] Cake tokens (no Alexandria red brand system)
+[x] Screenshots: verify/screenshots/verify-upcoming-390x844.png, verify-upcoming-320x568.png
+
+My Team
+[x] Rich viz default (no notebook gate)
+[x] Hero + record + Ask AI
+[x] Metric tiles / FormGuide / ChartCard modules present
+[x] Pitch lineup retained
+[x] Preferences secondary (footer), not hero
+[x] Nested overflow removed — single PageScroll
+[x] Screenshots: verify/screenshots/verify-myteam-390x844.png, verify-myteam-320x568.png
+
+Automated
+[x] npm run build exit 0
+[x] vitest PageScroll.overflow + chart summary smoke
+[x] Runtime: main.canScroll true; overflowX false @ 320 & 390
+
+Later routes (structure pass, not full Figma pixel match)
+[x] Pre-match pitch/form/compare
+[x] Live sticky + chart
+[x] Explain pitch event mark
+[x] Replay evidence poster
+[x] Recap comparison chart
+[x] Chat sticky composer dock
+[x] Past form guide + fixtures
+[x] Profile / Notifications chrome polish
+
+Token substitutions noted
+- Alexandria red → Cake --color-primary-primary / Badge for LIVE
+- Inter → Rookery (--font-family)
+- Card radius 16 → --radius-300
