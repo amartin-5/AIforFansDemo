@@ -1,4 +1,5 @@
-import { Badge, Button, Card, Divider } from '@cake-admin/cakeand';
+import { Badge, Button, Divider } from '@cake-admin/cakeand';
+import { GlassCard } from '../../components/GlassCard';
 import { ArrowRight, Circle } from 'lucide-react';
 import { useNavigate } from 'react-router-dom';
 import styled from 'styled-components';
@@ -39,15 +40,20 @@ const schedule = [
 
 export function WelcomePage() {
   const navigate = useNavigate();
-  const { continueFromWelcome } = useAccount();
+  const { continueFromWelcome, skipToDemo } = useAccount();
 
   const goalEvents = liveMatch.events.filter((e) => e.type === 'goal' || e.type === 'card-yellow').slice(0, 3);
+
+  const handleSkip = () => {
+    skipToDemo();
+    navigate('/home', { replace: true });
+  };
 
   return (
     <AuthShell label="Welcome">
       <AuthBrand />
 
-      <Card elevation="high">
+      <GlassCard elevation="high">
         <LivePad>
           <LiveTop>
             <LiveMeta>
@@ -97,7 +103,7 @@ export function WelcomePage() {
             Watch live
           </Button>
         </LivePad>
-      </Card>
+      </GlassCard>
 
       <Schedule>
         {schedule.map((item) => (
@@ -126,6 +132,9 @@ export function WelcomePage() {
         >
           Let’s go
         </Button>
+        <SkipLink type="button" onClick={handleSkip}>
+          Skip login — enter demo
+        </SkipLink>
         <PoweredByLenovo />
       </Footer>
     </AuthShell>
@@ -265,6 +274,30 @@ const Footer = styled.div`
   margin-top: auto;
   display: flex;
   flex-direction: column;
+  align-items: center;
   gap: var(--space-350);
   width: 100%;
+`;
+
+const SkipLink = styled.button`
+  margin-top: calc(var(--space-200) * -1);
+  border: none;
+  background: transparent;
+  padding: var(--space-050) var(--space-100);
+  cursor: pointer;
+  font-family: var(--font-family);
+  font-size: var(--type-size-caption);
+  color: var(--color-text-icon-secondary);
+  text-decoration: underline;
+  text-underline-offset: 2px;
+
+  &:hover {
+    color: var(--color-text-icon-primary);
+  }
+
+  &:focus-visible {
+    outline: var(--stroke-200) solid var(--color-primary-primary);
+    outline-offset: 2px;
+    border-radius: var(--radius-100);
+  }
 `;

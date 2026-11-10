@@ -19,7 +19,7 @@ import { useNavigate } from 'react-router-dom';
 import styled from 'styled-components';
 import { notifications } from '../data/fixtures/demoSpine';
 import { useAccount } from '../features/auth/AccountContext';
-import { glassChrome } from '../styles/surfaces';
+import { stickyChrome } from '../styles/surfaces';
 import { AppIcon } from './AppIcon';
 
 export function TopBar() {
@@ -182,7 +182,7 @@ const Bar = styled.header`
   position: relative;
   z-index: 2;
   border-bottom: 1px solid transparent;
-  ${glassChrome}
+  ${stickyChrome}
 `;
 
 const Brand = styled.button`

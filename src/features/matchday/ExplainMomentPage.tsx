@@ -1,4 +1,5 @@
-import { Button, Card } from '@cake-admin/cakeand';
+import { Button } from '@cake-admin/cakeand';
+import { GlassCard } from '../../components/GlassCard';
 import { useEffect } from 'react';
 import { useNavigate, useParams } from 'react-router-dom';
 import styled from 'styled-components';
@@ -10,6 +11,7 @@ import { SkeletonBlock } from '../../components/system/SkeletonBlock';
 import { DEMO_MATCH_ID } from '../../data/fixtures/demoSpine';
 import { useMatchLoader } from '../../hooks/useMatchLoader';
 import { track } from '../../services/analytics';
+import { containerBlur } from '../../styles/surfaces';
 
 export function ExplainMomentPage() {
   const { matchId = DEMO_MATCH_ID, eventId = 'ev-goal-81' } = useParams();
@@ -67,7 +69,7 @@ export function ExplainMomentPage() {
         <PitchCaption>Approximate location for this demo moment</PitchCaption>
       </PitchCard>
 
-      <Card>
+      <GlassCard>
         <Pad>
           <Meta>
             {event.minute}' · {event.label}
@@ -77,7 +79,7 @@ export function ExplainMomentPage() {
           {insight.confidenceLabel ? <Meta>{insight.confidenceLabel}</Meta> : null}
           <ProgressiveExplanation layers={insight.layers} insightId={insight.id} />
         </Pad>
-      </Card>
+      </GlassCard>
       <Button
         fullWidth
         onClick={() => {
@@ -174,8 +176,8 @@ const MarkPulse = styled.span`
 const MarkLabel = styled.span`
   padding: var(--space-100) var(--space-150);
   border-radius: var(--radius-100);
-  background: var(--color-surfaces-container-blur);
-  border: 1px solid var(--color-stroke-border);
+  border: none;
+  ${containerBlur}
   font-family: var(--font-family);
   font-size: var(--type-size-caption);
   color: var(--color-text-icon-primary);

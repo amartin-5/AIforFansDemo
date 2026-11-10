@@ -1,5 +1,6 @@
 import { useMemo } from 'react';
-import { Avatar, Badge, Card, nativeScrollbarStyles } from '@cake-admin/cakeand';
+import { Avatar, Badge, nativeScrollbarStyles } from '@cake-admin/cakeand';
+import { GlassCard } from '../components/GlassCard';
 import styled from 'styled-components';
 import { CakeChart } from '../charts/CakeChart';
 import {
@@ -10,6 +11,7 @@ import {
 } from '../charts/options';
 import { PitchLineup } from '../components/my-team/PitchLineup';
 import { TeamCrest } from '../components/TeamCrest';
+import { glassFill } from '../styles/surfaces';
 import {
   featuredMatch,
   finalStats,
@@ -81,7 +83,7 @@ export function MyTeamPage() {
         </Subtitle>
       </HeaderBlock>
 
-      <Card>
+      <GlassCard>
         <CardPad>
           <MatchLockup>
             <TeamCol>
@@ -106,9 +108,9 @@ export function MyTeamPage() {
             {finalMatch.venue} · {finalMatch.competition}
           </Venue>
         </CardPad>
-      </Card>
+      </GlassCard>
 
-      <Card>
+      <GlassCard>
         <CardPad>
           <InsightHead>
             <InsightTitle>{finalMatch.insightTitle}</InsightTitle>
@@ -120,16 +122,16 @@ export function MyTeamPage() {
           <NextLabel>Key takeaway</NextLabel>
           <BodyText>{finalMatch.insightNext}</BodyText>
         </CardPad>
-      </Card>
+      </GlassCard>
 
-      <Card>
+      <GlassCard>
         <CardPad>
           <SectionTitle>Starting lineup</SectionTitle>
           <PitchLineup />
         </CardPad>
-      </Card>
+      </GlassCard>
 
-      <Card>
+      <GlassCard>
         <CardPad>
           <SectionTitle>Tournament path</SectionTitle>
           <H2HLabels>
@@ -168,11 +170,11 @@ export function MyTeamPage() {
             </FormTeam>
           </FormRow>
         </CardPad>
-      </Card>
+      </GlassCard>
 
       <KeyGrid>
         {keyPlayers.map((p) => (
-          <Card key={p.name}>
+          <GlassCard key={p.name}>
             <CardPad>
               <KeyHead>
                 <Avatar initials={p.initials} size="md" alt={p.name} />
@@ -197,33 +199,33 @@ export function MyTeamPage() {
               </StatRow>
               <KeyNote>{p.note}</KeyNote>
             </CardPad>
-          </Card>
+          </GlassCard>
         ))}
       </KeyGrid>
 
-      <Card>
+      <GlassCard>
         <CardPad>
           <SectionTitle>Top scorers — Spain</SectionTitle>
           <CakeChart option={barOption} height={210} />
         </CardPad>
-      </Card>
+      </GlassCard>
 
-      <Card>
+      <GlassCard>
         <CardPad>
           <SectionTitle>Goals by round</SectionTitle>
           <CakeChart option={pieOption} height={230} />
         </CardPad>
-      </Card>
+      </GlassCard>
 
-      <Card>
+      <GlassCard>
         <CardPad>
           <SectionTitle>Cumulative goals</SectionTitle>
           <CakeChart option={lineOption} height={210} />
         </CardPad>
-      </Card>
+      </GlassCard>
 
       <GaugeGrid>
-        <Card>
+        <GlassCard>
           <CardPad>
             <SectionTitle>SF possession</SectionTitle>
             <CakeChart option={possessionOption} height={160} />
@@ -231,8 +233,8 @@ export function MyTeamPage() {
               ESP {finalStats.possessionSpain}% · SWE {finalStats.possessionSweden}%
             </GaugeSub>
           </CardPad>
-        </Card>
-        <Card>
+        </GlassCard>
+        <GlassCard>
           <CardPad>
             <SectionTitle>Pass accuracy</SectionTitle>
             <CakeChart option={passOption} height={160} />
@@ -240,7 +242,7 @@ export function MyTeamPage() {
               ESP {finalStats.passAccuracySpain}% · SWE {finalStats.passAccuracySweden}%
             </GaugeSub>
           </CardPad>
-        </Card>
+        </GlassCard>
       </GaugeGrid>
     </Page>
   );
@@ -276,11 +278,14 @@ const HeaderBlock = styled.div`
 
 const TitlePill = styled.div`
   align-self: flex-start;
-  backdrop-filter: blur(60px);
-  background: rgba(0, 0, 0, 0.25);
   border-radius: var(--radius-150);
   padding: var(--space-100) var(--space-200);
-  box-shadow: 0 8px 36px rgba(0, 0, 0, 0.15);
+  background: ${glassFill};
+  background-clip: padding-box;
+  border: var(--stroke-100) solid var(--color-stroke-border-container-os);
+  backdrop-filter: blur(45px) saturate(1.4);
+  -webkit-backdrop-filter: blur(45px) saturate(1.4);
+  box-shadow: var(--elevation-3);
 `;
 
 const Title = styled.h1`

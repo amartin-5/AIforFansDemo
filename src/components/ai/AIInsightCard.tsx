@@ -1,6 +1,6 @@
 import { Button } from '@cake-admin/cakeand';
 import styled from 'styled-components';
-import { glassAccent } from '../../styles/surfaces';
+import { accentSurface } from '../../styles/surfaces';
 import type { AIInsight } from '../../types/domain';
 import { InterpretationLabel } from './InterpretationLabel';
 
@@ -28,7 +28,7 @@ export function AIInsightCard({ insight, onOpen }: AIInsightCardProps) {
 }
 
 const Surface = styled.div`
-  ${glassAccent}
+  ${accentSurface}
 `;
 
 const Pad = styled.div`

@@ -1,7 +1,6 @@
 import {
   Badge,
   Button,
-  Card,
   IconButton,
   TextInput,
 } from '@cake-admin/cakeand';
@@ -24,14 +23,15 @@ import { useNavigate } from 'react-router-dom';
 import styled from 'styled-components';
 import { heroBg } from '../../assets/home';
 import lenovoLogo from '../../assets/brand/lenovo-logo.png';
+import { GlassCard } from '../../components/GlassCard';
 import { ContentSection } from '../../components/layout/ContentSection';
 import { DEMO_MATCH_ID } from '../../data/fixtures/demoSpine';
 import {
+  accentSurface,
   fadeRiseIn,
-  glassAccent,
-  glassSurface,
-  glassTile,
   interactiveLift,
+  restingSurface,
+  restingTile,
 } from '../../styles/surfaces';
 import {
   AI_INSIGHTS,
@@ -292,7 +292,7 @@ function JourneyModule() {
 
   return (
     <Module>
-      <Card>
+      <GlassCard>
         <ContinuePad>
           <ContinueHead>
             <div>
@@ -329,7 +329,7 @@ function JourneyModule() {
             Resume from preview
           </Button>
         </ContinuePad>
-      </Card>
+      </GlassCard>
     </Module>
   );
 }
@@ -462,7 +462,7 @@ const IntroHero = styled.section`
   position: relative;
   width: 100%;
   overflow: hidden;
-  ${glassSurface}
+  ${restingSurface}
   ${fadeRiseIn}
 `;
 
@@ -513,10 +513,7 @@ const AiMark = styled.div`
   height: 48px;
   border-radius: var(--radius-1000);
   background: var(--color-primary-primary-overlay);
-  border: 1px solid var(--color-stroke-border-container-os);
   color: var(--color-primary-primary);
-  backdrop-filter: blur(16px);
-  -webkit-backdrop-filter: blur(16px);
 `;
 
 const HeroCopy = styled.div`
@@ -593,7 +590,7 @@ const QuickCard = styled.button`
   color: var(--color-text-icon-primary);
   cursor: pointer;
   font: inherit;
-  ${glassTile}
+  ${restingTile}
   ${interactiveLift}
 `;
 
@@ -630,7 +627,7 @@ const FeatureHero = styled.article`
   width: 100%;
   min-height: 288px;
   overflow: hidden;
-  ${glassSurface}
+  ${restingSurface}
 `;
 
 const FeatureMedia = styled.div`
@@ -717,7 +714,7 @@ const TileCard = styled.button`
   cursor: pointer;
   text-align: left;
   font: inherit;
-  ${glassTile}
+  ${restingTile}
   ${interactiveLift}
 `;
 
@@ -775,14 +772,11 @@ const ReplayCardButton = styled.button`
   position: relative;
   width: 272px;
   height: 164px;
-  border: 1px solid var(--color-stroke-border-container-os);
+  border: none;
   padding: 0;
-  border-radius: var(--radius-400);
-  overflow: hidden;
   cursor: pointer;
   text-align: left;
-  background: var(--color-surfaces-canvas);
-  box-shadow: var(--elevation-3);
+  ${restingSurface}
   ${interactiveLift}
 `;
 
@@ -819,10 +813,7 @@ const Duration = styled.span`
   font-size: var(--type-size-caption);
   font-weight: var(--font-weight-medium);
   color: var(--color-text-icon-primary);
-  background: var(--color-surfaces-container-blur-high);
-  backdrop-filter: blur(12px);
-  -webkit-backdrop-filter: blur(12px);
-  border: 1px solid var(--color-stroke-border-container-os);
+  background: var(--color-surfaces-on-container);
   border-radius: var(--radius-1000);
   padding: var(--space-050) var(--space-150);
 `;
@@ -949,7 +940,7 @@ const InsightButton = styled.button`
 `;
 
 const InsightSurface = styled.div`
-  ${glassAccent}
+  ${accentSurface}
 `;
 
 const TermPad = styled.div`
@@ -1023,6 +1014,6 @@ const PromptCardButton = styled.button`
   cursor: pointer;
   text-align: left;
   font: inherit;
-  ${glassTile}
+  ${restingTile}
   ${interactiveLift}
 `;

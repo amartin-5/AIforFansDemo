@@ -1,6 +1,6 @@
 import { Button } from '@cake-admin/cakeand';
 import styled from 'styled-components';
-import { glassSurface } from '../../styles/surfaces';
+import { restingSurface } from '../../styles/surfaces';
 
 type ErrorStateProps = {
   title?: string;
@@ -32,7 +32,7 @@ const Wrap = styled.div`
   align-items: flex-start;
   gap: var(--space-200);
   padding: var(--space-400);
-  ${glassSurface}
+  ${restingSurface}
 `;
 
 const Title = styled.h2`

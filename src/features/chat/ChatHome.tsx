@@ -8,8 +8,12 @@ import {
   Waypoints,
 } from 'lucide-react';
 import styled, { keyframes } from 'styled-components';
-import { askReplayBg } from '../../assets/home';
 import { AppIcon } from '../../components/AppIcon';
+import {
+  containerBlur,
+  interactiveLift,
+  restingTile,
+} from '../../styles/surfaces';
 import type { ChatPopularRequest } from '../../types/domain';
 
 const ICON_MAP = {
@@ -29,13 +33,6 @@ type ChatHomeProps = {
 export function ChatHome({ requests, onSelect }: ChatHomeProps) {
   return (
     <Home>
-      <Atmosphere aria-hidden>
-        <AtmosphereImg src={askReplayBg} alt="" />
-        <AtmosphereWash />
-        <Glow $side="left" />
-        <Glow $side="right" />
-      </Atmosphere>
-
       <Hero>
         <OrbStage>
           <PulseRing />
@@ -131,59 +128,6 @@ const Home = styled.div`
   overflow: hidden;
 `;
 
-const Atmosphere = styled.div`
-  position: absolute;
-  inset: 0;
-  pointer-events: none;
-  z-index: 0;
-  overflow: hidden;
-`;
-
-const AtmosphereImg = styled.img`
-  position: absolute;
-  left: 50%;
-  top: -4%;
-  width: 150%;
-  height: 62%;
-  max-width: none;
-  transform: translateX(-50%);
-  object-fit: cover;
-  opacity: 0.48;
-  filter: saturate(0.9) brightness(0.7);
-`;
-
-const AtmosphereWash = styled.div`
-  position: absolute;
-  inset: 0;
-  background:
-    linear-gradient(
-      to bottom,
-      color-mix(in srgb, var(--color-surfaces-canvas) 18%, transparent) 0%,
-      color-mix(in srgb, var(--color-surfaces-canvas) 72%, transparent) 42%,
-      var(--color-surfaces-canvas) 68%
-    ),
-    radial-gradient(
-      ellipse 90% 55% at 50% 12%,
-      var(--color-primary-primary-overlay) 0%,
-      transparent 68%
-    );
-`;
-
-const Glow = styled.div<{ $side: 'left' | 'right' }>`
-  position: absolute;
-  top: 8%;
-  ${(p) => (p.$side === 'left' ? 'left: -20%;' : 'right: -18%;')}
-  width: 55%;
-  height: 42%;
-  border-radius: var(--radius-1000);
-  background: ${(p) =>
-    p.$side === 'left'
-      ? 'var(--color-primary-primary-overlay)'
-      : 'var(--color-info-info-overlay)'};
-  filter: blur(40px);
-  opacity: 0.9;
-`;
-
 const Hero = styled.div`
   position: relative;
   z-index: 1;
@@ -229,12 +173,10 @@ const OrbCore = styled.div`
   display: flex;
   align-items: center;
   justify-content: center;
-  background: var(--color-surfaces-container-blur);
-  border: 1px solid var(--color-stroke-border);
+  ${containerBlur}
   box-shadow:
     0 0 0 10px var(--color-primary-primary-overlay),
-    var(--elevation-4);
-  backdrop-filter: blur(16px);
+    var(--elevation-3);
   overflow: hidden;
 `;
 
@@ -328,32 +270,15 @@ const CardButton = styled.button`
   align-items: flex-start;
   gap: var(--space-150);
   padding: var(--space-250);
-  border-radius: var(--radius-300);
-  border: 1px solid var(--color-stroke-border);
-  background: var(--color-surfaces-container-blur);
-  backdrop-filter: blur(20px);
-  box-shadow: var(--elevation-1);
+  border: none;
+  ${restingTile}
+  ${interactiveLift}
   text-align: left;
   cursor: pointer;
   color: inherit;
   font: inherit;
   opacity: 0;
   animation: ${rise} 420ms ease-out forwards;
-  transition:
-    border-color 160ms ease,
-    transform 180ms ease,
-    box-shadow 180ms ease;
-
-  &:hover {
-    border-color: var(--color-stroke-border-high);
-    transform: translateY(-3px);
-    box-shadow: var(--elevation-3);
-  }
-
-  &:focus-visible {
-    outline: 2px solid var(--color-primary-primary);
-    outline-offset: 2px;
-  }
 `;
 
 const IconSlot = styled.span`

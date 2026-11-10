@@ -4,6 +4,7 @@ import { Navigate, useNavigate, useParams } from 'react-router-dom';
 import styled from 'styled-components';
 import { watchPitchImage } from '../../assets/past';
 import { MatchChatOverlay } from '../../components/match/MatchChatOverlay';
+import { containerBlur } from '../../styles/surfaces';
 import { ErrorState } from '../../components/system/ErrorState';
 import { SkeletonBlock } from '../../components/system/SkeletonBlock';
 import { DEMO_MATCH_ID } from '../../data/fixtures/demoSpine';
@@ -149,8 +150,8 @@ const LiveBadge = styled.span`
 const MinuteBadge = styled.span`
   padding: var(--space-100) var(--space-200);
   border-radius: var(--radius-200);
-  background: var(--color-surfaces-container-blur);
-  border: 1px solid var(--color-stroke-border);
+  border: none;
+  ${containerBlur}
   font-family: var(--font-family);
   font-size: var(--type-size-caption);
   font-weight: var(--font-weight-bold);
@@ -163,8 +164,8 @@ const ScorePill = styled.div`
   gap: var(--space-150);
   padding: var(--space-100) var(--space-200);
   border-radius: var(--radius-300);
-  background: var(--color-surfaces-container-blur);
-  border: 1px solid var(--color-stroke-border);
+  border: none;
+  ${containerBlur}
   font-family: var(--font-family);
   color: var(--color-text-icon-primary);
 

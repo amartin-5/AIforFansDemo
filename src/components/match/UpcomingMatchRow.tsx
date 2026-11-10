@@ -1,6 +1,6 @@
 import { ChevronRight } from 'lucide-react';
 import styled from 'styled-components';
-import { glassTile, interactiveLift } from '../../styles/surfaces';
+import { interactiveLift, restingTile } from '../../styles/surfaces';
 import type { Competition, Match, Team } from '../../types/domain';
 import { TeamIdentity } from './TeamIdentity';
 
@@ -52,7 +52,7 @@ const Row = styled.button`
   cursor: pointer;
   text-align: left;
   color: inherit;
-  ${glassTile}
+  ${restingTile}
   ${interactiveLift}
 `;
 

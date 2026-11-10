@@ -1,4 +1,5 @@
-import { Button, Card } from '@cake-admin/cakeand';
+import { Button } from '@cake-admin/cakeand';
+import { GlassCard } from '../../components/GlassCard';
 import { useCallback, useEffect, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import styled from 'styled-components';
@@ -144,7 +145,7 @@ export function MatchdayHubPage() {
         </Grid>
       </ContentSection>
 
-      <Card>
+      <GlassCard>
         <Pad>
           <Hint>Same match, journey states for the demo</Hint>
           <Actions>
@@ -171,7 +172,7 @@ export function MatchdayHubPage() {
             </Button>
           </Actions>
         </Pad>
-      </Card>
+      </GlassCard>
     </PageScroll>
   );
 }

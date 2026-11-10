@@ -5,6 +5,7 @@ import styled from 'styled-components';
 import lenovoLogo from '../../assets/brand/lenovo-logo.png';
 import { getConversation, submitQuery } from '../../data/repositories/chatRepository';
 import { track } from '../../services/analytics';
+import { containerBlur } from '../../styles/surfaces';
 import type { ChatMessage } from '../../types/domain';
 import { InterpretationLabel } from '../ai/InterpretationLabel';
 
@@ -190,12 +191,9 @@ const Panel = styled.div`
   width: min(320px, calc(100% - var(--space-100)));
   max-height: min(320px, 48dvh);
   border-radius: var(--radius-300);
-  border: 1px solid var(--color-stroke-border);
-  /* dark.a: inverse-container is light — do not pair it with primary (light) text */
-  background: var(--color-surfaces-container-blur);
-  backdrop-filter: blur(24px);
-  -webkit-backdrop-filter: blur(24px);
-  box-shadow: var(--elevation-high);
+  border: none;
+  /* Temporary floating panel — Hello PC container blur recipe. */
+  ${containerBlur}
   color: var(--color-text-icon-primary);
   overflow: hidden;
 `;
@@ -385,7 +383,7 @@ const Fab = styled.button`
   background: var(--color-primary-primary);
   color: var(--color-text-icon-on-primary);
   cursor: pointer;
-  box-shadow: var(--elevation-5);
+  box-shadow: var(--elevation-3);
   overflow: hidden;
 
   &:focus-visible {

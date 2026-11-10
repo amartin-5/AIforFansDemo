@@ -1,7 +1,7 @@
 import { CalendarDays, History, Radio, Shirt } from 'lucide-react';
 import type { ReactNode } from 'react';
 import styled from 'styled-components';
-import { glassChrome } from '../styles/surfaces';
+import { stickyChrome } from '../styles/surfaces';
 import { AppIcon } from './AppIcon';
 
 export type NavTabId = 'upcoming' | 'matchday' | 'ai-chat' | 'past' | 'my-team';
@@ -66,7 +66,7 @@ const Bar = styled.nav`
   align-items: center;
   border-top: 1px solid transparent;
   padding-bottom: env(safe-area-inset-bottom, 0px);
-  ${glassChrome}
+  ${stickyChrome}
 `;
 
 const Wrap = styled.div`

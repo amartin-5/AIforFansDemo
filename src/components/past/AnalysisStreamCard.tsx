@@ -1,5 +1,6 @@
 import { Maximize2, Play } from 'lucide-react';
 import styled from 'styled-components';
+import { containerBlur, restingTile } from '../../styles/surfaces';
 import type { Match, Team } from '../../types/domain';
 import { TeamIdentity } from '../match/TeamIdentity';
 
@@ -66,9 +67,7 @@ const ScoreRow = styled.div`
   align-items: center;
   gap: var(--space-150);
   padding: var(--space-150) var(--space-200);
-  border-radius: var(--radius-300);
-  background: var(--color-surfaces-container-blur);
-  border: 1px solid var(--color-stroke-border);
+  ${restingTile}
 `;
 
 const Side = styled.div<{ $end?: boolean }>`
@@ -137,9 +136,9 @@ const PlayBadge = styled.span`
   width: 52px;
   height: 52px;
   border-radius: var(--radius-1000);
-  background: var(--color-surfaces-container-blur);
+  border: none;
   color: var(--color-text-icon-primary);
-  border: 1px solid var(--color-stroke-border);
+  ${containerBlur}
 `;
 
 const ExpandHint = styled.span`
@@ -149,8 +148,8 @@ const ExpandHint = styled.span`
   display: inline-flex;
   padding: var(--space-100);
   border-radius: var(--radius-100);
-  background: var(--color-surfaces-container-blur);
   color: var(--color-text-icon-primary);
+  ${containerBlur}
 `;
 
 const Caption = styled.span`

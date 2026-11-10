@@ -2,6 +2,7 @@ import { Badge } from '@cake-admin/cakeand';
 import styled from 'styled-components';
 import { CakeChart } from '../../charts/CakeChart';
 import { createLineOption, createRadarOption } from '../../charts/options';
+import { restingTile } from '../../styles/surfaces';
 import type { ChatAnalysisPayload } from '../../types/domain';
 
 type ChatAnalysisCardProps = {
@@ -75,10 +76,8 @@ const Card = styled.div`
   gap: var(--space-300);
   width: 100%;
   padding: var(--space-300);
-  border-radius: var(--radius-300);
-  border: 1px solid var(--color-stroke-border);
-  background: var(--color-surfaces-container-blur);
-  backdrop-filter: blur(20px);
+  border: none;
+  ${restingTile}
 `;
 
 const Header = styled.div`

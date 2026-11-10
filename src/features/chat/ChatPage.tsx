@@ -8,6 +8,7 @@ import { InterpretationLabel } from '../../components/ai/InterpretationLabel';
 import { ErrorState } from '../../components/system/ErrorState';
 import { SkeletonBlock } from '../../components/system/SkeletonBlock';
 import { DEMO_MATCH_ID, scriptedChatReplies } from '../../data/fixtures/demoSpine';
+import { glassFill } from '../../styles/surfaces';
 import {
   getConversation,
   startNewChat,
@@ -410,8 +411,13 @@ const Bubble = styled.div<{ $role: string }>`
   background: ${(p) =>
     p.$role === 'user'
       ? 'var(--color-surfaces-on-container)'
-      : 'var(--color-surfaces-container-blur)'};
-  border: 1px solid var(--color-stroke-border);
+      : glassFill};
+  backdrop-filter: ${(p) =>
+    p.$role === 'user' ? 'none' : 'blur(45px) saturate(1.4)'};
+  -webkit-backdrop-filter: ${(p) =>
+    p.$role === 'user' ? 'none' : 'blur(45px) saturate(1.4)'};
+  box-shadow: ${(p) =>
+    p.$role === 'user' ? 'none' : 'var(--elevation-3)'};
 `;
 
 const BubbleText = styled.p`
@@ -475,9 +481,12 @@ const Field = styled.input`
   height: 48px;
   padding: 0 var(--space-300);
   border-radius: var(--radius-1000);
-  border: 1px solid var(--color-stroke-border);
-  background: var(--color-surfaces-container-blur);
-  backdrop-filter: blur(20px);
+  border: var(--stroke-100) solid var(--color-stroke-border-container-os);
+  background: ${glassFill};
+  background-clip: padding-box;
+  backdrop-filter: blur(45px) saturate(1.4);
+  -webkit-backdrop-filter: blur(45px) saturate(1.4);
+  box-shadow: var(--elevation-3);
   font-family: var(--font-family);
   font-size: var(--type-size-body);
   color: var(--color-text-icon-primary);

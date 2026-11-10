@@ -1,6 +1,5 @@
 import {
   Button,
-  Card,
   HorizontalTabItem,
   HorizontalTabs,
   HorizontalTabsContent,
@@ -11,6 +10,7 @@ import { useMemo, useState } from 'react';
 import { useNavigate, useParams } from 'react-router-dom';
 import styled from 'styled-components';
 import { AIInsightCard } from '../../components/ai/AIInsightCard';
+import { GlassCard } from '../../components/GlassCard';
 import { InterpretationLabel } from '../../components/ai/InterpretationLabel';
 import { ContentSection } from '../../components/layout/ContentSection';
 import { PageScroll } from '../../components/layout/PageScroll';
@@ -117,16 +117,16 @@ export function PastMatchAnalysisPage() {
             </ContentSection>
 
             {match.statistics.length > 0 ? (
-              <Card>
+              <GlassCard>
                 <Pad>
                   <SectionTitle>Match statistics</SectionTitle>
                   <StatCompareList statistics={match.statistics} home={home} away={away} />
                 </Pad>
-              </Card>
+              </GlassCard>
             ) : null}
 
             {match.takeaway ? (
-              <Card>
+              <GlassCard>
                 <Pad>
                   <InterpretationLabel kind="interpretation" />
                   <SectionTitle>
@@ -135,11 +135,11 @@ export function PastMatchAnalysisPage() {
                   <Body>{match.takeaway}</Body>
                   {match.nextMeaning ? <Body>{match.nextMeaning}</Body> : null}
                 </Pad>
-              </Card>
+              </GlassCard>
             ) : null}
 
             {match.storylines.map((s) => (
-              <Card key={s.id}>
+              <GlassCard key={s.id}>
                 <Pad>
                   <InterpretationLabel
                     kind={s.source === 'fact' ? 'fact' : 'interpretation'}
@@ -147,7 +147,7 @@ export function PastMatchAnalysisPage() {
                   <SectionTitle>{s.title}</SectionTitle>
                   <Body>{s.summary}</Body>
                 </Pad>
-              </Card>
+              </GlassCard>
             ))}
 
             <ContentSection title="Match timeline">
@@ -174,7 +174,7 @@ export function PastMatchAnalysisPage() {
 
         <HorizontalTabsContent value="stats">
           <Panel>
-            <Card>
+            <GlassCard>
               <Pad>
                 <SectionTitle>Head-to-head</SectionTitle>
                 {meta.h2h ? (
@@ -200,9 +200,9 @@ export function PastMatchAnalysisPage() {
                   <FormPills label={away.shortName} results={meta.formAway} />
                 </FormStack>
               </Pad>
-            </Card>
+            </GlassCard>
 
-            <Card>
+            <GlassCard>
               <Pad>
                 <SectionTitle>Match comparison</SectionTitle>
                 {match.statistics.length === 0 ? (
@@ -211,13 +211,13 @@ export function PastMatchAnalysisPage() {
                   <StatCompareList statistics={match.statistics} home={home} away={away} />
                 )}
               </Pad>
-            </Card>
+            </GlassCard>
           </Panel>
         </HorizontalTabsContent>
 
         <HorizontalTabsContent value="lineup">
           <Panel>
-            <Card>
+            <GlassCard>
               <Pad>
                 <SectionTitle>Starting XIs</SectionTitle>
                 <PastPitchLineup
@@ -227,7 +227,7 @@ export function PastMatchAnalysisPage() {
                   awayLineup={awayLineup}
                 />
               </Pad>
-            </Card>
+            </GlassCard>
           </Panel>
         </HorizontalTabsContent>
 
@@ -271,7 +271,7 @@ export function PastMatchAnalysisPage() {
             {activeInsight ? (
               <>
                 <AIInsightCard insight={activeInsight} />
-                <Card>
+                <GlassCard>
                   <Pad>
                     <InterpretationLabel kind="interpretation" />
                     <SectionTitle>Why did this happen?</SectionTitle>
@@ -293,16 +293,16 @@ export function PastMatchAnalysisPage() {
                       Watch this moment
                     </Button>
                   </Pad>
-                </Card>
+                </GlassCard>
               </>
             ) : match.takeaway ? (
-              <Card>
+              <GlassCard>
                 <Pad>
                   <InterpretationLabel kind="interpretation" />
                   <SectionTitle>Match insight</SectionTitle>
                   <Body>{match.takeaway}</Body>
                 </Pad>
-              </Card>
+              </GlassCard>
             ) : (
               <Muted>Insights are being prepared for this fixture.</Muted>
             )}

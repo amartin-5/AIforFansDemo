@@ -1,7 +1,7 @@
 import { Badge } from '@cake-admin/cakeand';
 import type { ReactNode } from 'react';
 import styled from 'styled-components';
-import { glassSurface } from '../../styles/surfaces';
+import { restingSurface } from '../../styles/surfaces';
 
 type ChartCardProps = {
   title: string;
@@ -44,7 +44,7 @@ const Card = styled.section`
   padding: var(--space-350);
   width: 100%;
   min-width: 0;
-  ${glassSurface}
+  ${restingSurface}
 `;
 
 const Head = styled.div`

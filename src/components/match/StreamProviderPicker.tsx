@@ -1,6 +1,7 @@
 import { ChevronDown } from 'lucide-react';
 import { useEffect, useId, useRef, useState } from 'react';
 import styled from 'styled-components';
+import { containerBlur } from '../../styles/surfaces';
 import type { ViewingProvider } from '../../types/domain';
 import { ProviderMark } from './ProviderMark';
 
@@ -96,7 +97,7 @@ const Trigger = styled.button`
   padding: var(--space-050);
   border: 1px solid var(--color-stroke-border);
   border-radius: var(--radius-150);
-  background: var(--color-surfaces-container-blur);
+  ${containerBlur}
   color: var(--color-text-icon-secondary);
   cursor: pointer;
 
@@ -116,11 +117,8 @@ const Menu = styled.div`
   gap: var(--space-050);
   padding: var(--space-100);
   border-radius: var(--radius-200);
-  border: 1px solid var(--color-stroke-border);
-  background: var(--color-surfaces-container-blur);
-  backdrop-filter: blur(24px);
-  -webkit-backdrop-filter: blur(24px);
-  box-shadow: var(--elevation-3);
+  border: none;
+  ${containerBlur}
 `;
 
 const Option = styled.button<{ $selected: boolean }>`

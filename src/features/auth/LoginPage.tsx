@@ -1,4 +1,5 @@
-import { Button, Card, TextInput } from '@cake-admin/cakeand';
+import { Button, TextInput } from '@cake-admin/cakeand';
+import { GlassCard } from '../../components/GlassCard';
 import { ArrowRight, Eye, EyeOff, Lock, Mail } from 'lucide-react';
 import { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
@@ -10,7 +11,7 @@ import { AuthShell } from './AuthShell';
 
 export function LoginPage() {
   const navigate = useNavigate();
-  const { signIn, startSignUp, session } = useAccount();
+  const { signIn, startSignUp, skipToDemo, session } = useAccount();
   const [email, setEmail] = useState(session?.email ?? '');
   const [password, setPassword] = useState('');
   const [showPassword, setShowPassword] = useState(false);
@@ -27,12 +28,17 @@ export function LoginPage() {
     navigate('/create-profile');
   };
 
+  const handleSkip = () => {
+    skipToDemo();
+    navigate('/home', { replace: true });
+  };
+
   return (
     <AuthShell label="Sign in">
       <AuthBack to="/welcome" label="Back to welcome" />
       <AuthBrand />
 
-      <Card>
+      <GlassCard>
         <FormPad as="form" onSubmit={handleLogin}>
           <FormTitle>Sign in</FormTitle>
 
@@ -75,8 +81,12 @@ export function LoginPage() {
           <Button type="submit" fullWidth size="lg" endIcon={<ArrowRight size={16} />}>
             Login
           </Button>
+
+          <SkipLink type="button" onClick={handleSkip}>
+            Skip login — enter demo
+          </SkipLink>
         </FormPad>
-      </Card>
+      </GlassCard>
 
       <Footer>
         <SignUpRow>
@@ -152,4 +162,27 @@ const Muted = styled.span`
   font-family: var(--font-family);
   font-size: var(--type-size-body);
   color: var(--color-text-icon-primary);
+`;
+
+const SkipLink = styled.button`
+  align-self: center;
+  border: none;
+  background: transparent;
+  padding: var(--space-050) var(--space-100);
+  cursor: pointer;
+  font-family: var(--font-family);
+  font-size: var(--type-size-caption);
+  color: var(--color-text-icon-secondary);
+  text-decoration: underline;
+  text-underline-offset: 2px;
+
+  &:hover {
+    color: var(--color-text-icon-primary);
+  }
+
+  &:focus-visible {
+    outline: var(--stroke-200) solid var(--color-primary-primary);
+    outline-offset: 2px;
+    border-radius: var(--radius-100);
+  }
 `;

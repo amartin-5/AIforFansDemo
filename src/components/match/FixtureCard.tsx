@@ -1,5 +1,5 @@
 import styled from 'styled-components';
-import { glassTile } from '../../styles/surfaces';
+import { restingTile } from '../../styles/surfaces';
 import type { Match, Team } from '../../types/domain';
 import { TeamIdentity } from './TeamIdentity';
 
@@ -47,7 +47,7 @@ const Card = styled.div`
   gap: var(--space-200);
   padding: var(--space-300);
   min-width: 0;
-  ${glassTile}
+  ${restingTile}
 `;
 
 const LiveLabel = styled.p`

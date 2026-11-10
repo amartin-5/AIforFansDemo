@@ -1,4 +1,5 @@
-import { Button, Card } from '@cake-admin/cakeand';
+import { Button } from '@cake-admin/cakeand';
+import { GlassCard } from '../../components/GlassCard';
 import { Play } from 'lucide-react';
 import { useEffect, useMemo, useState } from 'react';
 import { useNavigate, useParams } from 'react-router-dom';
@@ -9,6 +10,7 @@ import { InterpretationLabel } from '../../components/ai/InterpretationLabel';
 import { ChartCard } from '../../components/charts/ChartCard';
 import { FormGuide } from '../../components/charts/FormGuide';
 import { ContentSection } from '../../components/layout/ContentSection';
+import { restingTile } from '../../styles/surfaces';
 import { PageScroll } from '../../components/layout/PageScroll';
 import { StreamLoginModal } from '../../components/match/StreamLoginModal';
 import { TeamIdentity } from '../../components/match/TeamIdentity';
@@ -115,7 +117,7 @@ export function PreMatchPage() {
       </ReportHeader>
 
       {why ? (
-        <Card>
+        <GlassCard>
           <Pad>
             <InterpretationLabel
               kind={why.source === 'fact' ? 'fact' : 'interpretation'}
@@ -141,11 +143,11 @@ export function PreMatchPage() {
             ) : null}
             <Powered>Powered by Lenovo</Powered>
           </Pad>
-        </Card>
+        </GlassCard>
       ) : null}
 
       <ContentSection title="Lineups">
-        <Card>
+        <GlassCard>
           <Pad>
             <InterpretationLabel kind={homeLineup?.confirmed ? 'fact' : 'expected'} />
             <TeamLine>
@@ -163,7 +165,7 @@ export function PreMatchPage() {
               </span>
             </TeamLine>
           </Pad>
-        </Card>
+        </GlassCard>
         {showDemoPitch ? (
           <PitchWrap>
             <PitchLineup />
@@ -322,7 +324,5 @@ const PitchWrap = styled.div`
   width: 100%;
   min-width: 0;
   padding: var(--space-200);
-  border-radius: var(--radius-300);
-  border: 1px solid var(--color-stroke-border);
-  background: var(--color-surfaces-container-blur);
+  ${restingTile}
 `;

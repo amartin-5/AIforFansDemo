@@ -1,6 +1,7 @@
 import { Modal, ModalContent } from '@cake-admin/cakeand';
 import { ChevronRight } from 'lucide-react';
 import styled from 'styled-components';
+import { glassFill } from '../../styles/surfaces';
 import type { ViewingProvider } from '../../types/domain';
 import { ProviderMark } from './ProviderMark';
 
@@ -135,7 +136,12 @@ const ProviderRow = styled.button<{ $secondary?: boolean }>`
     p.$secondary
       ? '1px solid var(--color-stroke-border)'
       : 'var(--stroke-200) solid var(--color-stroke-border-high)'};
-  background: var(--color-surfaces-container-blur);
+  background: ${glassFill};
+  background-clip: padding-box;
+  border: var(--stroke-100) solid var(--color-stroke-border-container-os);
+  backdrop-filter: blur(45px) saturate(1.4);
+  -webkit-backdrop-filter: blur(45px) saturate(1.4);
+  box-shadow: var(--elevation-3);
   color: var(--color-text-icon-primary);
   cursor: pointer;
   font: inherit;

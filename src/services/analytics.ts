@@ -28,6 +28,7 @@ export type AnalyticsEventName =
   | 'auth_welcome_continued'
   | 'auth_sign_in'
   | 'auth_sign_up'
+  | 'auth_skip_login'
   | 'auth_profile_completed'
   | 'auth_sign_out';
 

@@ -1,6 +1,7 @@
 import { Maximize2 } from 'lucide-react';
 import styled from 'styled-components';
 import { watchPitchImage } from '../../assets/past';
+import { containerBlur } from '../../styles/surfaces';
 import type { Competition, Match, Team } from '../../types/domain';
 import { TeamIdentity } from './TeamIdentity';
 
@@ -119,10 +120,8 @@ const ScorePill = styled.div`
   min-height: 28px;
   padding: 0 var(--space-150);
   border-radius: var(--radius-100);
-  background: var(--color-surfaces-container-blur);
-  backdrop-filter: blur(24px);
-  -webkit-backdrop-filter: blur(24px);
-  border: 1px solid var(--color-stroke-border);
+  border: none;
+  ${containerBlur}
   font-family: var(--font-family);
   font-size: var(--type-size-body);
   font-weight: var(--font-weight-bold);
@@ -199,8 +198,7 @@ const CompBadge = styled.span`
   max-width: 70%;
   padding: var(--space-050) var(--space-150);
   border-radius: var(--radius-100);
-  background: var(--color-surfaces-container-blur);
-  backdrop-filter: blur(16px);
+  ${containerBlur}
   font-family: var(--font-family);
   font-size: var(--type-size-caption);
   font-weight: var(--font-weight-bold);
@@ -217,7 +215,6 @@ const ExpandHint = styled.span`
   width: 32px;
   height: 32px;
   border-radius: var(--radius-150);
-  background: var(--color-surfaces-container-blur);
   color: var(--color-text-icon-primary);
-  backdrop-filter: blur(16px);
+  ${containerBlur}
 `;

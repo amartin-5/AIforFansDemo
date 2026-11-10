@@ -1,5 +1,5 @@
 import styled from 'styled-components';
-import { glassSurface } from '../../styles/surfaces';
+import { restingSurface } from '../../styles/surfaces';
 import type { FormEntry } from '../../types/domain';
 
 type FormGuideProps = {
@@ -41,7 +41,7 @@ const Section = styled.section`
   flex-direction: column;
   gap: var(--space-200);
   padding: var(--space-350);
-  ${glassSurface}
+  ${restingSurface}
 `;
 
 const Title = styled.h2`

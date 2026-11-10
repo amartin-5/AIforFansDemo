@@ -1,4 +1,5 @@
-import { Button, Card, Divider, Switch } from '@cake-admin/cakeand';
+import { Button, Divider, Switch } from '@cake-admin/cakeand';
+import { GlassCard } from '../../components/GlassCard';
 import { ChevronRight, Tv } from 'lucide-react';
 import { useNavigate } from 'react-router-dom';
 import styled from 'styled-components';
@@ -58,7 +59,7 @@ export function SettingsPage() {
         <Sub>Notifications, streaming, and app preferences.</Sub>
       </Header>
 
-      <Card>
+      <GlassCard>
         <SectionPad>
           <SectionTitle>Notifications</SectionTitle>
           <Divider weight="weak" />
@@ -104,9 +105,9 @@ export function SettingsPage() {
             />
           </ToggleRow>
         </SectionPad>
-      </Card>
+      </GlassCard>
 
-      <Card>
+      <GlassCard>
         <SectionPad>
           <SectionTitle>Streaming services</SectionTitle>
           <Divider weight="weak" />
@@ -140,9 +141,9 @@ export function SettingsPage() {
             </ProviderGroup>
           ) : null}
         </SectionPad>
-      </Card>
+      </GlassCard>
 
-      <Card>
+      <GlassCard>
         <SectionPad>
           <SectionTitle>Playback & feel</SectionTitle>
           <Divider weight="weak" />
@@ -174,9 +175,9 @@ export function SettingsPage() {
             />
           </ToggleRow>
         </SectionPad>
-      </Card>
+      </GlassCard>
 
-      <Card>
+      <GlassCard>
         <SectionPad>
           <SectionTitle>Privacy</SectionTitle>
           <Divider weight="weak" />
@@ -194,9 +195,9 @@ export function SettingsPage() {
             />
           </ToggleRow>
         </SectionPad>
-      </Card>
+      </GlassCard>
 
-      <Card>
+      <GlassCard>
         <SectionPad>
           <SectionTitle>Account</SectionTitle>
           <Divider weight="weak" />
@@ -221,7 +222,7 @@ export function SettingsPage() {
             <ChevronRight size={18} aria-hidden />
           </NavRow>
         </SectionPad>
-      </Card>
+      </GlassCard>
 
       <Button intent="secondary" variant="ghost" fullWidth onClick={() => navigate(-1)}>
         Done

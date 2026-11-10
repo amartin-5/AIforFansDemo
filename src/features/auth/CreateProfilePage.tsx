@@ -1,10 +1,12 @@
-import { Avatar, Button, Card, Dropdown, TextInput } from '@cake-admin/cakeand';
+import { Avatar, Button, Dropdown, TextInput } from '@cake-admin/cakeand';
+import { GlassCard } from '../../components/GlassCard';
 import { ArrowRight, Camera, Check, ChevronRight, UserRound } from 'lucide-react';
 import { useEffect, useState } from 'react';
 import { Navigate, useNavigate } from 'react-router-dom';
 import styled from 'styled-components';
 import { ProviderMark } from '../../components/match/ProviderMark';
 import { viewingProviders } from '../../data/fixtures/demoSpine';
+import { glassFill } from '../../styles/surfaces';
 import { useStreamingAuth } from '../../hooks/useStreamingAuth';
 import type { SkillLevel } from '../../types/domain';
 import { useAccount } from './AccountContext';
@@ -132,7 +134,7 @@ export function CreateProfilePage() {
         ) : null}
       </HeaderRow>
 
-      <Card>
+      <GlassCard>
         <FormPad>
           <FormTitle>{editing ? 'Edit profile' : 'Create profile'}</FormTitle>
 
@@ -229,7 +231,7 @@ export function CreateProfilePage() {
 
           {session?.email ? <EmailHint>Signed in as {session.email}</EmailHint> : null}
         </FormPad>
-      </Card>
+      </GlassCard>
     </AuthShell>
   );
 }
@@ -389,7 +391,12 @@ const ProviderMain = styled.button<{ $selected?: boolean }>`
     p.$selected
       ? 'var(--stroke-200) solid var(--color-primary-primary)'
       : '1px solid var(--color-stroke-border)'};
-  background: var(--color-surfaces-container-blur);
+  background: ${glassFill};
+  background-clip: padding-box;
+  border: var(--stroke-100) solid var(--color-stroke-border-container-os);
+  backdrop-filter: blur(45px) saturate(1.4);
+  -webkit-backdrop-filter: blur(45px) saturate(1.4);
+  box-shadow: var(--elevation-3);
   color: var(--color-text-icon-primary);
   cursor: pointer;
   font: inherit;

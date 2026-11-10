@@ -1,4 +1,5 @@
-import { Button, Card } from '@cake-admin/cakeand';
+import { Button } from '@cake-admin/cakeand';
+import { GlassCard } from '../../components/GlassCard';
 import { useMemo, useState } from 'react';
 import { useNavigate, useParams } from 'react-router-dom';
 import styled from 'styled-components';
@@ -17,6 +18,7 @@ import { ErrorState } from '../../components/system/ErrorState';
 import { SkeletonBlock } from '../../components/system/SkeletonBlock';
 import { DEMO_MATCH_ID } from '../../data/fixtures/demoSpine';
 import { useMatchLoader } from '../../hooks/useMatchLoader';
+import { restingSurface } from '../../styles/surfaces';
 import { useStreamingAuth } from '../../hooks/useStreamingAuth';
 import { track } from '../../services/analytics';
 import type { MatchEvent, ViewingProvider } from '../../types/domain';
@@ -182,7 +184,7 @@ export function LiveMatchPage() {
             ) : null}
 
             <ContentSection title="Essential statistics">
-              <Card>
+              <GlassCard>
                 <StatsPad>
                   {match.statistics.map((s) => (
                     <StatRow key={s.id}>
@@ -198,7 +200,7 @@ export function LiveMatchPage() {
                     </StatRow>
                   ))}
                 </StatsPad>
-              </Card>
+              </GlassCard>
             </ContentSection>
 
             {insight ? (
@@ -272,9 +274,7 @@ const LockCard = styled.div`
   flex-direction: column;
   gap: var(--space-250);
   padding: var(--space-400);
-  border-radius: var(--radius-400);
-  border: 1px solid var(--color-stroke-border);
-  background: var(--color-surfaces-container-blur);
+  ${restingSurface}
 `;
 
 const LockTitle = styled.h1`

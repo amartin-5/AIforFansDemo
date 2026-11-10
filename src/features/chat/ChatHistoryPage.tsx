@@ -4,6 +4,7 @@ import { useCallback, useEffect, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import styled from 'styled-components';
 import { PageScroll } from '../../components/layout/PageScroll';
+import { restingTile } from '../../styles/surfaces';
 import { EmptyState } from '../../components/system/EmptyState';
 import { ErrorState } from '../../components/system/ErrorState';
 import { SkeletonBlock } from '../../components/system/SkeletonBlock';
@@ -151,18 +152,12 @@ const Row = styled.button`
   width: 100%;
   margin: 0;
   padding: var(--space-250) var(--space-300);
-  border-radius: var(--radius-200);
-  border: 1px solid var(--color-stroke-border);
-  background: var(--color-surfaces-container-blur);
-  backdrop-filter: blur(20px);
+  border: none;
+  ${restingTile}
   text-align: left;
   cursor: pointer;
   color: inherit;
   font: inherit;
-
-  &:hover {
-    border-color: var(--color-stroke-border-high);
-  }
 
   &:focus-visible {
     outline: 2px solid var(--color-primary-primary);

@@ -1,6 +1,7 @@
 import { Badge, IconButton } from '@cake-admin/cakeand';
 import { History, Keyboard, X } from 'lucide-react';
 import styled, { keyframes } from 'styled-components';
+import { containerBlur } from '../../styles/surfaces';
 import { PoweredByLenovo } from '../auth/AuthBrand';
 
 export type VoiceUiState = 'listening' | 'processing' | 'speaking';
@@ -117,8 +118,7 @@ const Overlay = styled.div`
   justify-content: space-between;
   gap: var(--space-300);
   padding: var(--space-300) var(--space-300) var(--space-200);
-  background: color-mix(in srgb, var(--color-surfaces-canvas) 88%, transparent);
-  backdrop-filter: blur(16px);
+  background: var(--color-overlay-scrim);
 `;
 
 const StatusBlock = styled.div`
@@ -237,9 +237,8 @@ const TranscriptCard = styled.div`
   overflow-y: auto;
   padding: var(--space-250) var(--space-300);
   border-radius: var(--radius-300);
-  border: 1px solid var(--color-stroke-border);
-  background: var(--color-surfaces-container-blur);
-  backdrop-filter: blur(20px);
+  border: none;
+  ${containerBlur}
   flex-shrink: 0;
 `;
 

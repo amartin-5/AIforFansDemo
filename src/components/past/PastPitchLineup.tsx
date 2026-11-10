@@ -1,6 +1,7 @@
 import { Avatar } from '@cake-admin/cakeand';
 import { useState } from 'react';
 import styled from 'styled-components';
+import { glassFill } from '../../styles/surfaces';
 import type { Lineup, Team } from '../../types/domain';
 
 type PastPitchLineupProps = {
@@ -79,7 +80,11 @@ const Toggle = styled.button<{ $active: boolean }>`
     ${(p) => (p.$active ? 'var(--color-primary-primary)' : 'var(--color-stroke-border)')};
   border-radius: var(--radius-200);
   background: ${(p) =>
-    p.$active ? 'var(--color-surfaces-primary)' : 'var(--color-surfaces-container-blur)'};
+    p.$active ? 'var(--color-surfaces-primary)' : glassFill};
+  backdrop-filter: ${(p) =>
+    p.$active ? 'none' : 'blur(45px) saturate(1.4)'};
+  -webkit-backdrop-filter: ${(p) =>
+    p.$active ? 'none' : 'blur(45px) saturate(1.4)'};
   color: var(--color-text-icon-primary);
   font-family: var(--font-family);
   font-size: var(--type-size-caption);

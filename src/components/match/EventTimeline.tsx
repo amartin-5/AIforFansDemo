@@ -1,4 +1,5 @@
 import styled from 'styled-components';
+import { glassFill } from '../../styles/surfaces';
 import type { MatchEvent } from '../../types/domain';
 
 type EventTimelineProps = {
@@ -53,9 +54,13 @@ const Item = styled.button<{ $selected: boolean }>`
   border: 1px solid
     ${(p) => (p.$selected ? 'var(--color-primary-primary)' : 'var(--color-stroke-border)')};
   background: ${(p) =>
-    p.$selected
-      ? 'var(--color-surfaces-primary)'
-      : 'var(--color-surfaces-container-blur)'};
+    p.$selected ? 'var(--color-surfaces-primary)' : glassFill};
+  backdrop-filter: ${(p) =>
+    p.$selected ? 'none' : 'blur(45px) saturate(1.4)'};
+  -webkit-backdrop-filter: ${(p) =>
+    p.$selected ? 'none' : 'blur(45px) saturate(1.4)'};
+  box-shadow: ${(p) =>
+    p.$selected ? 'none' : 'var(--elevation-3)'};
   cursor: pointer;
   color: inherit;
   font: inherit;

@@ -1,4 +1,5 @@
-import { Avatar, Badge, Button, Card, Divider, IconButton } from '@cake-admin/cakeand';
+import { Avatar, Badge, Button, Divider, IconButton } from '@cake-admin/cakeand';
+import { GlassCard } from '../../components/GlassCard';
 import { Flag, Pencil, Settings, Share2, Shield } from 'lucide-react';
 import { useNavigate } from 'react-router-dom';
 import styled from 'styled-components';
@@ -53,7 +54,7 @@ export function ProfilePage() {
         ) : null}
       </Hero>
 
-      <Card>
+      <GlassCard>
         <SectionPad>
           <SectionTitle>Team affiliations</SectionTitle>
           <Divider weight="weak" />
@@ -87,7 +88,7 @@ export function ProfilePage() {
             </Button>
           </DetailRow>
         </SectionPad>
-      </Card>
+      </GlassCard>
 
       <Actions>
         <Button

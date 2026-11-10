@@ -1,8 +1,10 @@
-import { Button, Card } from '@cake-admin/cakeand';
+import { Button } from '@cake-admin/cakeand';
+import { GlassCard } from '../../components/GlassCard';
 import { useEffect, useState } from 'react';
 import { useNavigate, useParams } from 'react-router-dom';
 import styled from 'styled-components';
 import { InterpretationLabel } from '../../components/ai/InterpretationLabel';
+import { containerBlur } from '../../styles/surfaces';
 import { PageScroll } from '../../components/layout/PageScroll';
 import { EmptyState } from '../../components/system/EmptyState';
 import { ErrorState } from '../../components/system/ErrorState';
@@ -60,7 +62,7 @@ export function ReplayPage() {
         ← Back to explanation
       </Back>
       <Title>Replay / Evidence</Title>
-      <Card>
+      <GlassCard>
         <Poster role="img" aria-label="Replay placeholder">
           <PosterGrid aria-hidden>
             <span />
@@ -85,7 +87,7 @@ export function ReplayPage() {
             </>
           ) : null}
         </Pad>
-      </Card>
+      </GlassCard>
 
       {evidence.length === 0 ? (
         <EmptyState
@@ -94,7 +96,7 @@ export function ReplayPage() {
         />
       ) : (
         evidence.map((item) => (
-          <Card key={item.id}>
+          <GlassCard key={item.id}>
             <Pad>
               <InterpretationLabel kind={item.kind === 'statistic' ? 'fact' : 'interpretation'} />
               <H3>{item.label}</H3>
@@ -104,7 +106,7 @@ export function ReplayPage() {
                   : item.note ?? 'Evidence unavailable in this prototype.'}
               </P>
             </Pad>
-          </Card>
+          </GlassCard>
         ))
       )}
 
@@ -184,8 +186,8 @@ const AngleChip = styled.span`
   z-index: 1;
   padding: var(--space-100) var(--space-150);
   border-radius: var(--radius-100);
-  border: 1px solid var(--color-stroke-border);
-  background: var(--color-surfaces-container-blur);
+  border: none;
+  ${containerBlur}
   font-family: var(--font-family);
   font-size: var(--type-size-caption);
   color: var(--color-text-icon-primary);

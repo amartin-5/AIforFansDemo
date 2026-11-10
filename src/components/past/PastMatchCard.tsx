@@ -1,4 +1,5 @@
-import { Button, Card, SimpleCard } from '@cake-admin/cakeand';
+import { Button, SimpleCard } from '@cake-admin/cakeand';
+import { GlassCard } from '../GlassCard';
 import { Calendar, MapPin } from 'lucide-react';
 import styled from 'styled-components';
 import type { Competition, Match, Team } from '../../types/domain';
@@ -29,7 +30,7 @@ export function PastMatchCard({
       : `${home.name} vs ${away.name}`;
 
   return (
-    <Card>
+    <GlassCard>
       <SimpleCard
         media={
           <Media>
@@ -67,7 +68,7 @@ export function PastMatchCard({
           </Button>
         }
       />
-    </Card>
+    </GlassCard>
   );
 }
 
@@ -91,7 +92,7 @@ const MediaWash = styled.div`
   inset: 0;
   background: linear-gradient(
     to top,
-    var(--color-surfaces-container-blur),
+    var(--color-surfaces-container),
     transparent 55%
   );
   pointer-events: none;

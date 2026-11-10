@@ -1,7 +1,7 @@
 import { Button } from '@cake-admin/cakeand';
 import styled from 'styled-components';
 import { backgroundImage } from '../../assets/template';
-import { glassSurface } from '../../styles/surfaces';
+import { restingSurface } from '../../styles/surfaces';
 import type { Competition, Match, Team } from '../../types/domain';
 import { MatchStatusBadge } from './MatchStatusBadge';
 import { ScoreDisplay } from './ScoreDisplay';
@@ -103,7 +103,7 @@ export function MatchHeroCard({
 const PlainCard = styled.div`
   width: 100%;
   overflow: hidden;
-  ${glassSurface}
+  ${restingSurface}
 `;
 
 const Editorial = styled.article`
@@ -111,7 +111,7 @@ const Editorial = styled.article`
   display: flex;
   flex-direction: column;
   overflow: hidden;
-  ${glassSurface}
+  ${restingSurface}
 `;
 
 const HeroMedia = styled.div`

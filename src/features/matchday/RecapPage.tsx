@@ -1,4 +1,5 @@
-import { Button, Card } from '@cake-admin/cakeand';
+import { Button } from '@cake-admin/cakeand';
+import { GlassCard } from '../../components/GlassCard';
 import { useEffect, useMemo } from 'react';
 import { useNavigate, useParams } from 'react-router-dom';
 import styled from 'styled-components';
@@ -64,17 +65,17 @@ export function RecapPage() {
         competition={competition}
       />
 
-      <Card>
+      <GlassCard>
         <Pad>
           <InterpretationLabel kind="interpretation" />
           <H2>Match story</H2>
           <P>{match.takeaway}</P>
         </Pad>
-      </Card>
+      </GlassCard>
 
       <ContentSection title="Defining moments">
         {moments.map((m) => (
-          <Card key={m.id}>
+          <GlassCard key={m.id}>
             <Pad>
               <Button
                 intent="secondary"
@@ -89,11 +90,11 @@ export function RecapPage() {
               </Button>
               <P>{m.description}</P>
             </Pad>
-          </Card>
+          </GlassCard>
         ))}
       </ContentSection>
 
-      <Card>
+      <GlassCard>
         <Pad>
           <InterpretationLabel kind="interpretation" />
           <H2>Why the match was won</H2>
@@ -101,7 +102,7 @@ export function RecapPage() {
           <H2>What it means next</H2>
           <P>{match.nextMeaning}</P>
         </Pad>
-      </Card>
+      </GlassCard>
 
       {match.statistics.length > 0 ? (
         <ChartCard
@@ -123,7 +124,7 @@ export function RecapPage() {
       ) : null}
 
       <ContentSection title="Essential statistics">
-        <Card>
+        <GlassCard>
           <StatsPad>
             {match.statistics.map((s) => (
               <Row key={s.id}>
@@ -139,7 +140,7 @@ export function RecapPage() {
               </Row>
             ))}
           </StatsPad>
-        </Card>
+        </GlassCard>
       </ContentSection>
 
       <Button

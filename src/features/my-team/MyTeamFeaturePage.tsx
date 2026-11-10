@@ -3,6 +3,7 @@ import { useCallback, useEffect, useMemo, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import styled from 'styled-components';
 import { CakeChart } from '../../charts/CakeChart';
+import { onContainerSurface, restingTile } from '../../styles/surfaces';
 import {
   createBarOption,
   createHorizontalBarOption,
@@ -348,9 +349,8 @@ const Story = styled.div`
   gap: var(--space-100);
   width: 100%;
   padding: var(--space-250);
-  border-radius: var(--radius-200);
-  border: 1px solid var(--color-stroke-border);
-  background: var(--color-surfaces-container-blur);
+  border: none;
+  ${onContainerSurface}
 `;
 
 const StoryTitle = styled.h2`
@@ -389,9 +389,8 @@ const NextCard = styled.div`
   flex-direction: column;
   gap: var(--space-200);
   padding: var(--space-300);
-  border-radius: var(--radius-300);
-  border: 1px solid var(--color-stroke-border);
-  background: var(--color-surfaces-container-blur);
+  border: none;
+  ${restingTile}
 `;
 
 const NextMeta = styled.p`
@@ -434,9 +433,8 @@ const PlayerCard = styled.div`
   flex-direction: column;
   gap: var(--space-150);
   padding: var(--space-300);
-  border-radius: var(--radius-300);
-  border: 1px solid var(--color-stroke-border);
-  background: var(--color-surfaces-container-blur);
+  border: none;
+  ${restingTile}
 `;
 
 const PlayerHead = styled.div`
@@ -479,11 +477,9 @@ const PlayerNote = styled.p`
 const PitchWrap = styled.div`
   width: 100%;
   min-width: 0;
-  border-radius: var(--radius-300);
-  border: 1px solid var(--color-stroke-border);
-  overflow: hidden;
+  border: none;
   padding: var(--space-200);
-  background: var(--color-surfaces-container-blur);
+  ${restingTile}
 `;
 
 const MomentRow = styled.div`
@@ -502,9 +498,8 @@ const Prefs = styled.div`
   flex-direction: column;
   gap: var(--space-200);
   padding: var(--space-300);
-  border-radius: var(--radius-300);
-  border: 1px solid var(--color-stroke-border);
-  background: var(--color-surfaces-container-blur);
+  border: none;
+  ${restingTile}
 `;
 
 const SwitchRow = styled.label`

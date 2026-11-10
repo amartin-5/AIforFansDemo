@@ -6,6 +6,7 @@ import {
   useState,
   type ReactNode,
 } from 'react';
+import { currentUser } from '../../data/fixtures/demoSpine';
 import type { SkillLevel, User } from '../../types/domain';
 import { track } from '../../services/analytics';
 import {
@@ -34,6 +35,8 @@ type AccountContextValue = {
   continueFromWelcome: () => void;
   signIn: (email: string, _password: string) => { onboarded: boolean };
   startSignUp: (email: string) => void;
+  /** Tester shortcut — enter the demo fully onboarded without credentials. */
+  skipToDemo: () => void;
   completeProfile: (draft: ProfileDraft) => User;
   updateUser: (next: User) => void;
   signOut: () => void;
@@ -104,6 +107,20 @@ export function AccountProvider({ children }: { children: ReactNode }) {
     track('auth_sign_up');
   }, []);
 
+  const skipToDemo = useCallback(() => {
+    const demoUser = readProfile() ?? currentUser;
+    const nextSession: AccountSession = {
+      email: demoUser.email ?? 'demo@aiforfans.local',
+      authenticated: true,
+      onboarded: true,
+    };
+    writeProfile(demoUser);
+    writeSession(nextSession);
+    setUser(demoUser);
+    setSession(nextSession);
+    track('auth_skip_login');
+  }, []);
+
   const completeProfile = useCallback(
     (draft: ProfileDraft) => {
       const email = session?.email ?? user?.email ?? 'fan@example.com';
@@ -148,6 +165,7 @@ export function AccountProvider({ children }: { children: ReactNode }) {
       continueFromWelcome,
       signIn,
       startSignUp,
+      skipToDemo,
       completeProfile,
       updateUser,
       signOut,
@@ -158,6 +176,7 @@ export function AccountProvider({ children }: { children: ReactNode }) {
       continueFromWelcome,
       signIn,
       startSignUp,
+      skipToDemo,
       completeProfile,
       updateUser,
       signOut,

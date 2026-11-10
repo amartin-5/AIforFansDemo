@@ -1,5 +1,5 @@
 import styled from 'styled-components';
-import { glassTile } from '../../styles/surfaces';
+import { restingTile } from '../../styles/surfaces';
 
 type MetricTileProps = {
   label: string;
@@ -23,7 +23,7 @@ const Tile = styled.div`
   gap: var(--space-050);
   padding: var(--space-300);
   min-width: 0;
-  ${glassTile}
+  ${restingTile}
 `;
 
 const Value = styled.p`

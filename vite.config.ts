@@ -15,7 +15,9 @@ export default defineConfig({
     dedupe: ['styled-components', 'react', 'react-dom'],
   },
 
-  server: { open: true },
+  // host true → 0.0.0.0 so both localhost and 127.0.0.1 work (Windows IPv6 localhost
+  // alone can leave 127.0.0.1 refusing while the Cursor browser prefers IPv4).
+  server: { host: true, port: 5174, strictPort: true, open: true },
 
   test: {
     environment: 'jsdom',
