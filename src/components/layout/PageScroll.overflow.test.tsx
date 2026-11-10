@@ -44,7 +44,7 @@ describe('responsive shell overflow smoke', () => {
     expect(screen.getByText('Goals')).toBeInTheDocument();
   });
 
-  it('PhoneFrame source contract: fluid shell (no scale helper class)', () => {
+  it('PhoneFrame source contract: fixed artboard with fit scale', () => {
     const { container } = render(
       <Shell>
         <PageScroll label="Upcoming">
@@ -52,7 +52,10 @@ describe('responsive shell overflow smoke', () => {
         </PageScroll>
       </Shell>,
     );
-    expect(container.querySelector('[style*="scale"]')).toBeNull();
+    const frame = container.querySelector('[data-phone-frame]');
+    // jsdom viewport is desktop-sized by default — expect the solid device path.
+    expect(frame).not.toBeNull();
+    expect(frame?.getAttribute('style') ?? '').toMatch(/scale\(/);
     expect(screen.getByRole('main', { name: 'Upcoming' })).toBeInTheDocument();
   });
 });

@@ -439,7 +439,7 @@ export const notifications: Notification[] = [
     matchId: DEMO_MATCH_ID,
     category: 'live',
     dayGroup: 'today',
-    status: 'error',
+    status: 'info',
     scoreLabel: 'ESP 1 - 0 SWE · 81′',
   },
   {
