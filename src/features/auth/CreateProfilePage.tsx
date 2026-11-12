@@ -117,7 +117,20 @@ export function CreateProfilePage() {
   const canContinue = Boolean(displayName.trim() && skillLevel);
 
   return (
-    <AuthShell label={editing ? 'Edit profile' : 'Create profile'}>
+    <AuthShell
+      label={editing ? 'Edit profile' : 'Create profile'}
+      footer={
+        <Button
+          fullWidth
+          size="lg"
+          endIcon={editing ? undefined : <ArrowRight size={16} />}
+          onClick={handleContinue}
+          disabled={!canContinue}
+        >
+          {editing ? 'Save profile' : 'Continue'}
+        </Button>
+      }
+    >
       <AuthBack
         to={editing ? '/profile' : '/login'}
         label={editing ? 'Back to profile' : 'Back to sign in'}
@@ -134,7 +147,7 @@ export function CreateProfilePage() {
         ) : null}
       </HeaderRow>
 
-      <GlassCard>
+      <FormCard>
         <FormPad>
           <FormTitle>{editing ? 'Edit profile' : 'Create profile'}</FormTitle>
 
@@ -219,22 +232,18 @@ export function CreateProfilePage() {
             </ProviderList>
           </Field>
 
-          <Button
-            fullWidth
-            size="lg"
-            endIcon={editing ? undefined : <ArrowRight size={16} />}
-            onClick={handleContinue}
-            disabled={!canContinue}
-          >
-            {editing ? 'Save profile' : 'Continue'}
-          </Button>
-
           {session?.email ? <EmailHint>Signed in as {session.email}</EmailHint> : null}
         </FormPad>
-      </GlassCard>
+      </FormCard>
     </AuthShell>
   );
 }
+
+/** Don't flex-shrink — Cake Card clips overflow, so shrinking would hide fields. */
+const FormCard = styled(GlassCard)`
+  flex-shrink: 0;
+  width: 100%;
+`;
 
 const HeaderRow = styled.div`
   display: flex;
@@ -387,13 +396,12 @@ const ProviderMain = styled.button<{ $selected?: boolean }>`
   min-height: 56px;
   padding: 0 var(--space-300);
   border-radius: var(--radius-200);
+  background: ${glassFill};
+  background-clip: padding-box;
   border: ${(p) =>
     p.$selected
       ? 'var(--stroke-200) solid var(--color-primary-primary)'
-      : '1px solid var(--color-stroke-border)'};
-  background: ${glassFill};
-  background-clip: padding-box;
-  border: var(--stroke-100) solid var(--color-stroke-border-container-os);
+      : 'var(--stroke-100) solid var(--color-stroke-border)'};
   backdrop-filter: blur(45px) saturate(1.4);
   -webkit-backdrop-filter: blur(45px) saturate(1.4);
   box-shadow: var(--elevation-3);
